@@ -34,11 +34,13 @@
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body columns is-multiline mb-0 media">
-                <div class="column is-two-fifths">
-                    <!--Meta Content-->
-                    <div id="book-title">TITLE</div>
-                    <div id="book-author">AUTHOR</div>
-                    <div id="genre">GENRE</div>
+                <div class="column is-two-fifths is-flex is-flex-direction-column is-justify-content-center v-full">
+                    <div class="column is-flex is-flex-direction-column is-justify-content-center">
+                        <!--Meta Content-->
+                        <div id="book-title" class="is-flex is-align-items-center">TITLE</div>
+                        <div id="book-author" class="is-flex is-align-items-center">AUTHOR</div>
+                        <div id="genre" class="is-flex is-align-items-center">GENRE</div>
+                    </div>
                 </div>
                 <div class="column is-three-fifths">
 
@@ -47,11 +49,9 @@
                         </figure>
 
                 </div>
-                <div class="column is-full">
-                    <div id="book-synopsis is-clipped">
-                        <p class="is-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam incidunt ad? Quos aut dolorum possimus minima amet. Minus non debitis exercitationem expedita quas magni accusantium inventore? Reiciendis, tenetur ipsa.
-                        Cupiditate officiis aut error provident. Aspernatur veniam eum non impedit dignissimos ut ipsam deserunt numquam temporibus accusantium quae praesentium, fugit pariatur error consectetur labore iusto eaque quos repellendus in tempora.
-                        Amet ea ut cumque esse cupiditate perspiciatis, vel veritatis minima nesciunt aliquid, distinctio quos nemo? Animi, eligendi maiores? Earum vero minima maiores tempora quibusdam ducimus accusantium quos, soluta facilis a.</p>
+                <div class="column is-full is-flex is-justify-content-center">
+                    <div>
+                        <p class="is-size-3">My Rating</p>
                     </div>
                 </div>
                 <div class="column is-full is-flex is-justify-content-center">
@@ -65,6 +65,14 @@
                         </span>
                     </div>
                 </div>
+                <div class="column is-full">
+                    <div id="book-synopsis" class="is-clipped">
+                        <p class="is-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam incidunt ad? Quos aut dolorum possimus minima amet. Minus non debitis exercitationem expedita quas magni accusantium inventore? Reiciendis, tenetur ipsa.
+                        Cupiditate officiis aut error provident. Aspernatur veniam eum non impedit dignissimos ut ipsam deserunt numquam temporibus accusantium quae praesentium, fugit pariatur error consectetur labore iusto eaque quos repellendus in tempora.
+                        Amet ea ut cumque esse cupiditate perspiciatis, vel veritatis minima nesciunt aliquid, distinctio quos nemo? Animi, eligendi maiores? Earum vero minima maiores tempora quibusdam ducimus accusantium quos, soluta facilis a.</p>
+                    </div>
+                </div>
+
 
             </section>
             <footer class="modal-card-foot is-justify-content-space-evenly">
@@ -82,5 +90,5 @@
 
      <script src="./assets/js/script.js"></script>
     </body>
-  </html>
+
 </html>
