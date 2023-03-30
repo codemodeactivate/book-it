@@ -8,16 +8,78 @@
     <title>My Library</title>
 </head>
 <body>
-    <section class="section">
-      <div class="container">
-        <h1 class="title">
-          Hello World
-        </h1>
-        <p class="subtitle">
-          My first website with <strong>Bulma</strong>!
-        </p>
+
+
+
+
+
+
+
+
+
+    <!--Jeff Modal / "Page 2"-->
+    <!-- Button that opens Modal -->
+      <button class="js-modal-trigger button is-primary" data-target="book-display">
+        Book Display
+      </button>
+
+    <div id="book-display" class="modal">
+        <div class="modal-background">
+            <!-- Adding this ID incase we need to get more precise later with the multiple modals we're trying to implement -->
+        </div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Modal title</p>
+              <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body columns is-multiline mb-0 media">
+                <div class="column is-two-fifths">
+                    <!--Meta Content-->
+                    <div id="book-title">TITLE</div>
+                    <div id="book-author">AUTHOR</div>
+                    <div id="genre">GENRE</div>
+                </div>
+                <div class="column is-three-fifths">
+
+                        <figure class="image is-4by5">
+                          <img src="https://bulma.io/images/placeholders/256x256.png" alt="Image Description">
+                        </figure>
+
+                </div>
+                <div class="column is-full">
+                    <div id="book-synopsis is-clipped">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam incidunt ad? Quos aut dolorum possimus minima amet. Minus non debitis exercitationem expedita quas magni accusantium inventore? Reiciendis, tenetur ipsa.
+                        Cupiditate officiis aut error provident. Aspernatur veniam eum non impedit dignissimos ut ipsam deserunt numquam temporibus accusantium quae praesentium, fugit pariatur error consectetur labore iusto eaque quos repellendus in tempora.
+                        Amet ea ut cumque esse cupiditate perspiciatis, vel veritatis minima nesciunt aliquid, distinctio quos nemo? Animi, eligendi maiores? Earum vero minima maiores tempora quibusdam ducimus accusantium quos, soluta facilis a.
+                    </div>
+                </div>
+                <div class="column is-full">
+                    <div id="reviews">
+                        Reviews. Depends on the data that comes from NYT API. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eveniet sunt fugit recusandae omnis libero eos cupiditate quisquam tempore! Cupiditate tenetur nulla quod voluptatibus nesciunt tempora rerum magni maxime accusantium.
+                        Corrupti quibusdam iste consequuntur exercitationem quod consequatur, animi ratione, nam illum consectetur voluptatum, aliquam officia aliquid eveniet officiis placeat? Illo rerum aliquam dignissimos culpa, accusamus non blanditiis autem eos nostrum.
+                        Ex nihil nostrum, exercitationem laborum sint veritatis doloribus autem earum consequatur praesentium cum dolorum obcaecati itaque quaerat numquam molestias voluptatum rerum nesciunt! Doloribus fugit veniam facere similique dicta in sed!
+                        Officiis hic eos quae aliquid facilis id quidem incidunt nemo neque? Natus accusamus, ab reiciendis ea nobis voluptate voluptas repellendus harum expedita eaque praesentium assumenda, voluptatum officia quod fugiat veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni consequuntur necessitatibus iusto possimus laborum placeat rerum, quod voluptatum quibusdam aspernatur dolore cum quaerat ex voluptatibus labore sunt sit? Quod, libero!
+                        Suscipit voluptatem asperiores dolor reiciendis ducimus ipsum quia voluptate placeat saepe eius aspernatur provident consectetur a facere cumque, sint facilis consequuntur, corrupti veniam, eaque laudantium natus debitis. Doloremque, placeat deleniti!
+                        Optio nisi quo magnam fuga itaque, corporis eligendi at? Mollitia, perspiciatis veritatis numquam provident unde ipsam molestias reprehenderit, delectus sed similique voluptatibus corporis fugiat maiores, sapiente expedita facilis et pariatur.
+                        Reiciendis distinctio sunt libero repellat unde cupiditate praesentium debitis, provident nulla consequatur voluptate dignissimos quis cumque illum id. Nostrum, dolorum sunt? Animi et perferendis quod fugit amet non doloribus error.
+                    </div>
+                </div>
+
+            </section>
+            <footer class="modal-card-foot">
+              <button class="button is-success">Add to List</button>
+              <button class="button is-warning">Currently Reading</button>
+              <button class="button is-info">I've Read it</button>
+              <button class="button is-danger">Remove From List</button>
+            </footer>
+        </div>
+
+        <button class="modal-close is-large" aria-label="close"></button><!-- Adds X close button at top of modal background overlay-->
       </div>
-    </section>
+      <!-- END OF Jeff Modal / "Page 2"-->
+
+
+     <script src="./assets/js/script.js"></script>
     </body>
   </html>
 </html>
