@@ -18,7 +18,7 @@
         />
         <title>My Library</title>
     </head>
-    <body>
+    <>
         <!--Jeff Modal / "Page 2"-->
         <!-- Button that opens Modal -->
         <a class="js-modal-trigger" data-target="book-display">
@@ -45,7 +45,28 @@
             </thead>
             <tbody></tbody>
         </table>
-
+        <div class="book">
+            <div class="book-cover-art">
+              <img src="book-cover-art-image.jpg" alt="Book Cover art"/>
+            </div>
+            <div class="book-info">
+              <h2>Book Name</h2>
+              <p>By Author Name</p>
+              <p>Other Metadata</p>
+            </div>
+            <div class="book-action">
+              <button class="my-note">My Personal Note on the Book</button>
+              <div class="ratings">
+                <button class="star">★</button>
+                <button class="star">★</button>
+                <button class="star">★</button>
+                <button class="star">★</button>
+                <button class="star">★</button>
+              </div>
+              <button class="add-list">Add to List</button>
+            </div>
+          </div>
+          
         <div id="book-display" class="modal">
             <div class="modal-background">
                 <!-- Adding this ID incase we need to get more precise later with the multiple modals we're trying to implement -->
