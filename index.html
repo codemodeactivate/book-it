@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,3 +36,181 @@
 </body>
 </html>
 
+=======
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <title>My Library</title>
+    </head>
+    <>
+        <!--Jeff Modal / "Page 2"-->
+        <!-- Button that opens Modal -->
+        <a class="js-modal-trigger" data-target="book-display">
+            Book Display Test
+        </a>
+
+        <!--CHRIS PART-->
+        <h1>Book Search</h1>
+        <form>
+            <label for="bookName">Book Name:</label>
+            <input type="text" id="bookName" name="bookName" />
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" />
+            <button type="submit">Search</button>
+        </form>
+        <table id="results">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Published Date</th>
+                    <th>Preview Link</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="book">
+            <div class="book-cover-art">
+              <img src="book-cover-art-image.jpg" alt="Book Cover art"/>
+            </div>
+            <div class="book-info">
+              <h2>Book Name</h2>
+              <p>By Author Name</p>
+              <p>Other Metadata</p>
+            </div>
+            <div class="book-action">
+              <button class="my-note">My Personal Note on the Book</button>
+              <div class="ratings">
+                <button class="star">★</button>
+                <button class="star">★</button>
+                <button class="star">★</button>
+                <button class="star">★</button>
+                <button class="star">★</button>
+              </div>
+              <button class="add-list">Add to List</button>
+            </div>
+          </div>
+          
+        <div id="book-display" class="modal">
+            <div class="modal-background">
+                <!-- Adding this ID incase we need to get more precise later with the multiple modals we're trying to implement -->
+            </div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title has-text-centered">BOOK TITLE</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section
+                    class="modal-card-body columns is-multiline mb-0 media"
+                >
+                    <div
+                        class="column is-two-fifths is-flex is-flex-direction-column is-justify-content-center v-full"
+                    >
+                        <div
+                            class="column is-flex is-flex-direction-column is-justify-content-center"
+                        >
+                            <!--Meta Content-->
+                            <div
+                                id="book-title"
+                                class="is-flex is-align-items-center"
+                            >
+                                BOOK TITLE
+                            </div>
+                            <div
+                                id="book-author"
+                                class="is-flex is-align-items-center"
+                            >
+                                AUTHOR
+                            </div>
+                            <div
+                                id="genre"
+                                class="is-flex is-align-items-center"
+                            >
+                                GENRE
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-three-fifths">
+                        <figure class="image is-4by5">
+                            <img
+                                src="https://bulma.io/images/placeholders/256x256.png"
+                                alt="Image Description"
+                            />
+                        </figure>
+                    </div>
+                    <div
+                        class="column is-full is-flex is-justify-content-center"
+                    >
+                        <div>
+                            <p class="is-size-3">My Rating</p>
+                        </div>
+                    </div>
+                    <div
+                        class="column is-full is-flex is-justify-content-center"
+                    >
+                        <div id="average-rating">
+                            <span class="icon has-text-warning is-large">
+                                <i class="fa-solid fa-4x fa-star"></i>
+                                <i class="fa-solid fa-4x fa-star"></i>
+                                <i class="fa-solid fa-4x fa-star"></i>
+                                <i class="fa-solid fa-4x fa-star"></i>
+                                <i
+                                    class="fa-solid fa-4x fa-star-half-stroke"
+                                ></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="column is-full">
+                        <div id="book-synopsis" class="is-clipped">
+                            <p class="is-italic">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Ab quisquam incidunt ad? Quos
+                                aut dolorum possimus minima amet. Minus non
+                                debitis exercitationem expedita quas magni
+                                accusantium inventore? Reiciendis, tenetur ipsa.
+                                Cupiditate officiis aut error provident.
+                                Aspernatur veniam eum non impedit dignissimos ut
+                                ipsam deserunt numquam temporibus accusantium
+                                quae praesentium, fugit pariatur error
+                                consectetur labore iusto eaque quos repellendus
+                                in tempora. Amet ea ut cumque esse cupiditate
+                                perspiciatis, vel veritatis minima nesciunt
+                                aliquid, distinctio quos nemo? Animi, eligendi
+                                maiores? Earum vero minima maiores tempora
+                                quibusdam ducimus accusantium quos, soluta
+                                facilis a.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot is-justify-content-space-evenly">
+                    <button class="button is-success">Add to List</button>
+                    <button class="button is-warning">Currently Reading</button>
+                    <button class="button is-info">I've Read it</button>
+                    <button class="button is-danger">Remove From List</button>
+                </footer>
+            </div>
+
+            <!--<button class="modal-close is-large" aria-label="close"></button>--><!-- Adds X close button at top of modal background overlay-->
+        </div>
+        <!-- END OF Jeff Modal / "Page 2"-->
+
+        <script src="./assets/js/script.js"></script>
+    </body>
+</html>
+>>>>>>> f064f5c9ee3eb516da51a619dffc349878637539
