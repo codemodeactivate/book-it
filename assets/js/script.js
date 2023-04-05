@@ -71,9 +71,9 @@ const tableRows = document.getElementsByTagName("tr");
 resultsTable.addEventListener("mouseover", (event) => {
     for (let i = 0; i < tableRows.length; i++) {
         tableRows[i].addEventListener("mouseover", (event) => {
-            tableRows[i].classList.add("is-selected");
+            tableRows[i].classList.add("is-selected", "is-clickable");
             tableRows[i].addEventListener("mouseout", (event) => {
-                tableRows[i].classList.remove("is-selected");
+                tableRows[i].classList.remove("is-selected", "is-clickable");
             });
         });
     }
