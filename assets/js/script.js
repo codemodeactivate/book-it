@@ -75,17 +75,19 @@ const populateModal = (book) => {
     const author = book.volumeInfo.authors;
     const genre = book.volumeInfo.categories;
     const synopsis = book.volumeInfo.description;
+    const image = book.volumeInfo.imageLinks.smallThumbnail;
     const modalTitle = document.querySelector(".modal-card-title");
+    const modalAuthor = document.getElementById("book-author");
+    const modalTitleInner = document.getElementById("book-title");
+    const modalGenre = document.getElementById("book-genre");
+    const modalSynopsis = document.getElementById("book-synopsis");
+    const modalImage = document.getElementById("book-image");
     modalTitle.textContent = title;
-
-    console.log('put info from relevant row into the modal');
-    console.log(book);
-    console.log('Book Title: ' + title);
-    console.log('Author: ' + book.volumeInfo.authors);
-    console.log('Genre: ' + book.volumeInfo.categories);
-    console.log('Description: ' + book.volumeInfo.description);
-
-
+    modalTitleInner.textContent = title;
+    modalAuthor.textContent = author;
+    modalImage.src = image;
+    modalGenre.textContent = genre;
+    modalSynopsis.textContent = synopsis;
 };
 
 
