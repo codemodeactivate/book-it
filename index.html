@@ -134,10 +134,6 @@
                     <th class="has-text-centered">Title</th>
                     <th class="has-text-centered">Author</th>
                     <th class="has-text-centered">Published Date</th>
-<<<<<<< HEAD
-                    <th class="has-text-centered">Cover</th>
-=======
->>>>>>> 97fe342126e8374bc6b6d0e816f4183f33ae3a49
                     <!--<th class="has-text-centered">Link</th>-->
                     </a>
                   </tr>
@@ -162,13 +158,13 @@
         <!--END CHRIS PART -->
 
         <!--BEGIN TRACE PART-->
-        <div id="my-book-display" class="modal">
+        <div id="na" class="modal">
           <div class="modal-background">
               <!-- Adding this ID incase we need to get more precise later with the multiple modals we're trying to implement -->
           </div>
           <div class="modal-card">
               <header class="modal-card-head">
-                  <p class="modal-card-title has-text-centered">BOOK TITLE</p>
+                  <p id="book-title" class="modal-card-title has-text-centered">BOOK TITLE</p>
                   <button class="delete" aria-label="close"></button>
               </header>
               <section
@@ -276,7 +272,7 @@
 
         <!--Jeff Modal / "Page 2"-->
         <!-- Button/Link that opens Modal -->
-        <a class="js-modal-trigger" data-target="my-book-display">
+        <a class="js-modal-trigger" data-target="book-display">
             Book Display Test
         </a>
         <div id="book-display" class="modal">
@@ -285,7 +281,7 @@
             </div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title has-text-centered">BOOK TITLE</p>
+                    <p class="modal-card-title has-text-centered" id="search-book-title">BOOK TITLE</p>
                     <button class="delete" aria-label="close"></button>
                 </header>
                 <section
@@ -297,17 +293,17 @@
                             <div id="book-title" class="is-flex is-align-items-center">
                                 BOOK TITLE
                             </div>
-                            <div id="book-author"class="is-flex is-align-items-center">
+                            <div id="search-book-authors" class="is-flex is-align-items-center">
                                 AUTHOR
                             </div>
-                            <div id="book-genre" class="is-flex is-align-items-center">
+                            <div id="search-book-genre" class="is-flex is-align-items-center">
                                 GENRE
                             </div>
                         </div>
                     </div>
                     <div class="column is-three-fifths">
                         <figure class="image is-1by1">
-                            <img id="book-image" src="https://bulma.io/images/placeholders/480x640.png" alt="Image Description"/>
+                            <img id="search-book-image" src="https://bulma.io/images/placeholders/480x640.png" alt="Image Description"/>
                         </figure>
                     </div>
                     <div class="column is-full is-flex is-justify-content-center">
@@ -329,7 +325,7 @@
                     </div>
                     <div class="column is-full">
                         <div class="is-clipped">
-                            <p id="book-synopsis" class="is-italic">
+                            <p id="search-book-synopsis" class="is-italic">
                                 Lorem ipsum dolor sit amet consectetur
                                 adipisicing elit. Ab quisquam incidunt ad? Quos
                                 aut dolorum possimus minima amet. Minus non
