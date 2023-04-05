@@ -64,7 +64,18 @@ function displayResults(book) {
     row.dataset.target = "book-display";
     //row.appendChild(previewLinkCell);
     resultsTable.appendChild(row);
+    row.addEventListener('click', function() {
+        populateModal(book);
+    })
 }
+
+const populateModal = (book) => {
+
+    console.log('put info from relevant row into the modal');
+    console.log(book);
+
+};
+
 
 //hover effect for table
 const tableRows = document.getElementsByTagName("tr");
