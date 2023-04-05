@@ -69,11 +69,18 @@ function displayResults(book) {
     })
 }
 
+//when user clicks on results in table, modal opens and info is passed to it
 const populateModal = (book) => {
+    const title = book.volumeInfo.title;
+    const author = book.volumeInfo.authors;
+    const genre = book.volumeInfo.categories;
+    const synopsis = book.volumeInfo.description;
+    const modalTitle = document.querySelector(".modal-card-title");
+    modalTitle.textContent = title;
 
     console.log('put info from relevant row into the modal');
     console.log(book);
-    console.log('Book Title: ' + book.volumeInfo.title);
+    console.log('Book Title: ' + title);
     console.log('Author: ' + book.volumeInfo.authors);
     console.log('Genre: ' + book.volumeInfo.categories);
     console.log('Description: ' + book.volumeInfo.description);
