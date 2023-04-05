@@ -18,7 +18,7 @@
     </head>
     <body>
         <!--START OF CLAUDIA-->
-        <header>
+        <header class="hero is-light">
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
@@ -26,29 +26,55 @@
                     </a>
 
                     <div class="navbar-dropdown">
-                      <a class="navbar-item">
+                      <a href=".want-to-read" clss="navbar-item">
                         Want to Read
                       </a>
-                      <a class="navbar-item">
+                      <a href=".currently-reading" class="navbar-item">
                         Currently Reading
                       </a>
-                      <a class="navbar-item">
+                      <a href=".have-read" class="navbar-item">
                         Have Read
                       </a>
                       </div>
                       <div class="navbar-end">
                         <div class="navbar-item">
-                <input type="text" placeholder="Search..."></input>
+                <input type="text" placeholder="Search..."> </input>
+                
                 </div>
                 </nav>
         </header>
         <main>
-            <section>
-                <h1 class="title is-1">Your Library</h1>
+            <section class="has-background-dark">
+                <h1 class="title is-1 has-text-centered has-text-warning">Your Library</h1>
             </section>
+            <section class="hero has-background-light">
+          <section>
+            <div class="container"> 
+              <div class="want-to-read"></div>
+                <h1 class="is-size-4 has-text-left">Want to Read</h1>
+                <div class="columns">
+                    <button>&lt;</button>
+                    <div class="column">
+                      First Book
+                    </div>
+                    <div class="column">
+                      Second Book
+                    </div>
+                    <div class="column">
+                      Third Book
+                    </div>
+                    <div class="column">
+                      Fourth Book
+                    </div>
+                    <button>&gt;</button>
+                  </div>
+                </div>
+            </div>
+          </Section>
             <Section>
             <div class="container">
-                <h1>Want to Read</h1>
+              <div class="currently-reading"></div>
+                <h1 class="has-text-left is-size-4">Currently Reading</h1>
                 <div class="columns">
                     <button>&lt;</button>
                     <div class="column">
@@ -70,7 +96,8 @@
             </Section>
             <Section>
             <div class="container">
-                <h1>Currently Reading</h1>
+              <div class="have-read"></div>
+                <h1 class="has-text-left is-size-4">Have Read</h1>
                 <div class="columns">
                     <button>&lt;</button>
                     <div class="column">
@@ -89,30 +116,9 @@
                   </div>
                 </div>
             </div>
-            </Section>
-            <Section>
-            <div class="container">
-                <h1>Have Read</h1>
-                <div class="columns">
-                    <button>&lt;</button>
-                    <div class="column">
-                      First Book
-                    </div>
-                    <div class="column">
-                      Second Book
-                    </div>
-                    <div class="column">
-                      Third Book
-                    </div>
-                    <div class="column">
-                      Fourth Book
-                    </div>
-                    <button>&gt;</button>
-                  </div>
-                </div>
-            </div>
-            </Section>
-
+          </div> 
+          </Section>
+          </section>
         </main>
         <!--END OF CLAUDIA-->
 
