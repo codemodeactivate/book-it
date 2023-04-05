@@ -73,6 +73,11 @@ const populateModal = (book) => {
 
     console.log('put info from relevant row into the modal');
     console.log(book);
+    console.log('Book Title: ' + book.volumeInfo.title);
+    console.log('Author: ' + book.volumeInfo.authors);
+    console.log('Genre: ' + book.volumeInfo.categories);
+    console.log('Description: ' + book.volumeInfo.description);
+
 
 };
 
