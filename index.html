@@ -128,15 +128,32 @@
         </form>
         <table id="results" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"> <!--This will end up being a sibling of the other parts Claudia is working on for page 'one'-->
             <thead>
+
                 <tr>
+                    <a href="#" target="_blank">
                     <th class="has-text-centered">Title</th>
                     <th class="has-text-centered">Author</th>
                     <th class="has-text-centered">Published Date</th>
-                    <th class="has-text-centered">Link</th>
-                </tr>
+                    <!--<th class="has-text-centered">Link</th>-->
+                    </a>
+                  </tr>
+
             </thead>
             <tbody></tbody>
         </table>
+        <template id="booktemplate">
+          <tr>
+            <td id="book-title">
+
+            </td>
+            <td id="book-author">
+
+            </td>
+            <td>
+
+            </td id="published-date">
+          </tr>
+        </template>
 
         <!--END CHRIS PART -->
 
@@ -196,9 +213,9 @@
                         </div>
                     </div>
                     <div class="column is-three-fifths">
-                        <figure class="image is-4by5">
+                        <figure class="image is-1by1">
                             <img
-                                src="https://bulma.io/images/placeholders/256x256.png"
+                                src="https://bulma.io/images/placeholders/480x640.png"
                                 alt="Image Description"/>
                         </figure>
                     </div>

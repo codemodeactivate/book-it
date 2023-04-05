@@ -24,6 +24,14 @@ form.addEventListener("submit", (event) => {
                 //iterate through the books array and invoke the function below that displays the each book to table
                 displayResults(book);
             });
+            //make each row a link
+            const resultsRow = document.querySelectorAll("tr.book-row");
+            resultsRow.forEach(function(row) {
+                row.addEventListener("click", function() {
+                const targetModal = document.getElementById(row.dataset.target);
+                targetModal.classList.add('is-active');
+                });
+            });
         })
         .catch((error) => console.error(error)); //if nothing is found do something
 });
@@ -47,11 +55,14 @@ function displayResults(book) {
     const previewLinkButton = document.createElement("a");
     previewLinkButton.textContent = "Preview";
     previewLinkButton.href = previewLink;
-    previewLinkCell.appendChild(previewLinkButton);
+    //previewLinkCell.appendChild(previewLinkButton);
     row.appendChild(titleCell);
     row.appendChild(authorCell);
     row.appendChild(publishedDateCell);
-    row.appendChild(previewLinkCell);
+    row.classList.add('book-row', 'js-modal-trigger');
+    //row.dataset.href = "previewLink"; This would attach a link to the google books link to each row from the fetched results. Instead we're opting to make the rows clickable and populate modal
+    row.dataset.target = "book-display";
+    //row.appendChild(previewLinkCell);
     resultsTable.appendChild(row);
 }
 
@@ -67,6 +78,8 @@ resultsTable.addEventListener("mouseover", (event) => {
         });
     }
 });
+
+
 
 //modal stuff
 document.addEventListener("DOMContentLoaded", () => {
