@@ -115,18 +115,36 @@ const populateModal = (book) => {
     const genre = book.volumeInfo.categories;
     const synopsis = book.volumeInfo.description;
     const image = book.volumeInfo.imageLinks.smallThumbnail;
-    const modalTitle = document.querySelector(".modal-card-title");
-    const modalAuthor = document.getElementById("book-author");
-    const modalTitleInner = document.getElementById("book-title");
-    const modalGenre = document.getElementById("book-genre");
-    const modalSynopsis = document.getElementById("book-synopsis");
-    const modalImage = document.getElementById("book-image");
+    const modalTitle = document.getElementById("search-book-title");
+    const modalAuthor = document.getElementById("search-book-authors");
+    const modalTitleInner = document.getElementById("search-book-title-inner");
+    const modalGenre = document.getElementById("search-book-genre");
+    const modalSynopsis = document.getElementById("search-book-synopsis");
+    const modalImage = document.getElementById("search-book-image");
     modalTitle.textContent = title;
     modalTitleInner.textContent = title;
     modalAuthor.textContent = author;
     modalImage.src = image;
     modalGenre.textContent = genre;
     modalSynopsis.textContent = synopsis;
+
+    const addToListButton = document.querySelector('.addBtn');//listener for add to list button
+    addToListButton.addEventListener('click', () => {
+    let booksLocal = JSON.parse(localStorage.getItem('booksLocal')) || [];//defines array
+    const books = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+    booksLocal.push(books);//add it too arrray
+    localStorage.setItem('booksLocal', JSON.stringify(booksLocal));//store
+    });
+    const removeListButton = document.querySelector('.removeBtn');
+    removeListButton.addEventListener('click', () => {
+        let booksLocal = JSON.parse(localStorage.getItem('booksLocal')) || [];//defines array
+        const toRemove = booksLocal.findIndex(books => books.title === title);// search for the object
+        // remove from array
+        if (toRemove !== -1) {
+        booksLocal.splice(toRemove, 1);
+        }
+        localStorage.setItem('booksLocal', JSON.stringify(booksLocal));  
+    })
 };
 
 
