@@ -44,6 +44,8 @@ function displayResults(book) {
         : "Unknown";
     const publishedDate = book.volumeInfo.publishedDate;
     const previewLink = book.volumeInfo.previewLink;
+    const tableOfBooks = document.getElementById("results");
+    tableOfBooks.classList.remove("is-hidden");
     const row = document.createElement("tr");
     const titleCell = document.createElement("td");
     titleCell.textContent = title;
@@ -62,6 +64,8 @@ function displayResults(book) {
     row.classList.add('book-row', 'js-modal-trigger');
     //row.dataset.href = "previewLink"; This would attach a link to the google books link to each row from the fetched results. Instead we're opting to make the rows clickable and populate modal
     row.dataset.target = "book-display";
+
+
     //row.appendChild(previewLinkCell);
     resultsTable.appendChild(row);
     //get then display cover art
@@ -69,7 +73,7 @@ function displayResults(book) {
         const isbn10 = book.volumeInfo.industryIdentifiers.find(identifier => identifier.type === "ISBN_10");
         const isbn13 = book.volumeInfo.industryIdentifiers.find(identifier => identifier.type === "ISBN_13");
     if (isbn13) {
-        const coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn13.identifier}-S.jpg`;
+        const coverUrl = `http://covers.openlibrary.org/b/isbn/${isbn13.identifier}-S.jpg`;
         const coverImageCell = document.createElement("td");
         const coverImage = document.createElement("img");
         coverImage.src = coverUrl;
@@ -77,7 +81,7 @@ function displayResults(book) {
         row.appendChild(coverImageCell);
     } else if (isbn10) {
         const isbn10WithHyphens = `${isbn10.identifier.slice(0, 1)}-${isbn10.identifier.slice(1, 4)}-${isbn10.identifier.slice(4)}`;
-        const coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn10WithHyphens}-S.jpg`;
+        const coverUrl = `http://covers.openlibrary.org/b/isbn/${isbn10WithHyphens}-S.jpg`;
         const coverImageCell = document.createElement("td");
         const coverImage = document.createElement("img");
         coverImage.src = coverUrl;
@@ -100,20 +104,23 @@ function displayResults(book) {
     })
 }
 
+
+
+
+
 //when user clicks on results in table, modal opens and info is passed to it
 const populateModal = (book) => {
     const title = book.volumeInfo.title;
-    console.log(title);
     const author = book.volumeInfo.authors;
     const genre = book.volumeInfo.categories;
     const synopsis = book.volumeInfo.description;
     const image = book.volumeInfo.imageLinks.smallThumbnail;
-    const modalTitle = document.getElementById("search-book-title");
-    const modalAuthor = document.getElementById("search-book-authors");
-    const modalTitleInner = document.getElementById("search-book-title");
-    const modalGenre = document.getElementById("search-book-genre");
-    const modalSynopsis = document.getElementById("search-book-synopsis");
-    const modalImage = document.getElementById("search-book-image");
+    const modalTitle = document.querySelector(".modal-card-title");
+    const modalAuthor = document.getElementById("book-author");
+    const modalTitleInner = document.getElementById("book-title");
+    const modalGenre = document.getElementById("book-genre");
+    const modalSynopsis = document.getElementById("book-synopsis");
+    const modalImage = document.getElementById("book-image");
     modalTitle.textContent = title;
     modalTitleInner.textContent = title;
     modalAuthor.textContent = author;

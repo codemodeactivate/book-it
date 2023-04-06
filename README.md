@@ -7,7 +7,7 @@ Case Western Coding Bootcamp Group Project # 1
 [Christopher Schmidt](https://github.com/cschmidt216)
 [Trace Linton](https://github.com/Trace1983)
 
-[Live Demo](#)
+[Live Demo](https://codemodeactivate.github.io/book-it/)
 
 ![Screenshot](#)
 
