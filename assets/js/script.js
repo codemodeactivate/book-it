@@ -24,6 +24,14 @@ form.addEventListener("submit", (event) => {
                 //iterate through the books array and invoke the function below that displays the each book to table
                 displayResults(book);
             });
+            //make each row a link
+            const resultsRow = document.querySelectorAll("tr.book-row");
+            resultsRow.forEach(function(row) {
+                row.addEventListener("click", function() {
+                const targetModal = document.getElementById(row.dataset.target);
+                targetModal.classList.add('is-active');
+                });
+            });
         })
         .catch((error) => console.error(error)); //if nothing is found do something
 });
@@ -47,26 +55,87 @@ function displayResults(book) {
     const previewLinkButton = document.createElement("a");
     previewLinkButton.textContent = "Preview";
     previewLinkButton.href = previewLink;
-    previewLinkCell.appendChild(previewLinkButton);
+    //previewLinkCell.appendChild(previewLinkButton);
     row.appendChild(titleCell);
     row.appendChild(authorCell);
     row.appendChild(publishedDateCell);
-    row.appendChild(previewLinkCell);
+    row.classList.add('book-row', 'js-modal-trigger');
+    //row.dataset.href = "previewLink"; This would attach a link to the google books link to each row from the fetched results. Instead we're opting to make the rows clickable and populate modal
+    row.dataset.target = "book-display";
+    //row.appendChild(previewLinkCell);
     resultsTable.appendChild(row);
+    //get then display cover art
+    if (book.volumeInfo.industryIdentifiers) {
+        const isbn10 = book.volumeInfo.industryIdentifiers.find(identifier => identifier.type === "ISBN_10");
+        const isbn13 = book.volumeInfo.industryIdentifiers.find(identifier => identifier.type === "ISBN_13");
+    if (isbn13) {
+        const coverUrl = `http://covers.openlibrary.org/b/isbn/${isbn13.identifier}-S.jpg`;
+        const coverImageCell = document.createElement("td");
+        const coverImage = document.createElement("img");
+        coverImage.src = coverUrl;
+        coverImageCell.appendChild(coverImage);
+        row.appendChild(coverImageCell);
+    } else if (isbn10) {
+        const isbn10WithHyphens = `${isbn10.identifier.slice(0, 1)}-${isbn10.identifier.slice(1, 4)}-${isbn10.identifier.slice(4)}`;
+        const coverUrl = `http://covers.openlibrary.org/b/isbn/${isbn10WithHyphens}-S.jpg`;
+        const coverImageCell = document.createElement("td");
+        const coverImage = document.createElement("img");
+        coverImage.src = coverUrl;
+        coverImageCell.appendChild(coverImage);
+        row.appendChild(coverImageCell);
+    } else {
+        const coverImageCell = document.createElement("td");
+        const noImageAvailable = document.createTextNode("No image available");
+        coverImageCell.appendChild(noImageAvailable);
+        row.appendChild(coverImageCell);
+    }}
+    else {
+        const coverImageCell = document.createElement("td");
+        const noImageAvailable = document.createTextNode("No image available");
+        coverImageCell.appendChild(noImageAvailable);
+        row.appendChild(coverImageCell);
+    }
+        row.addEventListener('click', function() {
+        populateModal(book);
+    })
 }
+
+//when user clicks on results in table, modal opens and info is passed to it
+const populateModal = (book) => {
+    const title = book.volumeInfo.title;
+    const author = book.volumeInfo.authors;
+    const genre = book.volumeInfo.categories;
+    const synopsis = book.volumeInfo.description;
+    const image = book.volumeInfo.imageLinks.smallThumbnail;
+    const modalTitle = document.querySelector(".modal-card-title");
+    const modalAuthor = document.getElementById("book-author");
+    const modalTitleInner = document.getElementById("book-title");
+    const modalGenre = document.getElementById("book-genre");
+    const modalSynopsis = document.getElementById("book-synopsis");
+    const modalImage = document.getElementById("book-image");
+    modalTitle.textContent = title;
+    modalTitleInner.textContent = title;
+    modalAuthor.textContent = author;
+    modalImage.src = image;
+    modalGenre.textContent = genre;
+    modalSynopsis.textContent = synopsis;
+};
+
 
 //hover effect for table
 const tableRows = document.getElementsByTagName("tr");
 resultsTable.addEventListener("mouseover", (event) => {
     for (let i = 0; i < tableRows.length; i++) {
         tableRows[i].addEventListener("mouseover", (event) => {
-            tableRows[i].classList.add("is-selected");
+            tableRows[i].classList.add("is-selected", "is-clickable");
             tableRows[i].addEventListener("mouseout", (event) => {
-                tableRows[i].classList.remove("is-selected");
+                tableRows[i].classList.remove("is-selected", "is-clickable");
             });
         });
     }
 });
+
+
 
 //modal stuff
 document.addEventListener("DOMContentLoaded", () => {
@@ -119,4 +188,4 @@ document.addEventListener("DOMContentLoaded", () => {
             closeAllModals();
         }
     });
-});
+});   
