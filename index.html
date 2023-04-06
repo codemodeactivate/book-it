@@ -39,7 +39,7 @@
                       <div class="navbar-end">
                         <div class="navbar-item">
                 <input type="text" placeholder="Search..."> </input>
-                
+
                 </div>
                 </nav>
         </header>
@@ -49,7 +49,19 @@
             </section>
             <section class="hero has-background-light">
           <section>
-            <div class="container"> 
+            <div class="container">
+
+              <div class="column is-fullwidth is-flex">
+                <div class="column is-fullwidth">
+                <form>
+                  <input type="text" id="bookName" name="bookName" class="input is-primary" placeholder="Search by Book Title"/>
+                </div>
+                <div>
+                  <button type="submit">Search</button>
+                </form>
+                </div>
+              </div>
+
               <div class="want-to-read"></div>
                 <h1 class="is-size-4 has-text-left">Want to Read</h1>
                 <div class="box">
@@ -92,7 +104,7 @@
                     <div class="column is-one-quarter">
                       Fourth Book
                     </div>
-                    <button>&gt;</button> 
+                    <button>&gt;</button>
                     </div>
                   </div>
                 </div>
@@ -122,7 +134,7 @@
                   </div>
                 </div>
             </div>
-          </div> 
+          </div>
           </Section>
           </section>
         </main>
@@ -131,13 +143,7 @@
 
         <!--START OF CHRIS PART-->
         <h1>Book Search</h1>
-        <form>
-            <label for="bookName">Book Name:</label>
-            <input type="text" id="bookName" name="bookName" />
-            <label for="genre">Genre:</label>
-            <input type="text" id="genre" name="genre" />
-            <button type="submit">Search</button>
-        </form>
+
         <table id="results" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"> <!--This will end up being a sibling of the other parts Claudia is working on for page 'one'-->
             <thead>
 
