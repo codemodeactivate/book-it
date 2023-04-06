@@ -64,7 +64,6 @@ function displayResults(book) {
     row.dataset.target = "book-display";
     //row.appendChild(previewLinkCell);
     resultsTable.appendChild(row);
-<<<<<<< HEAD
     //get then display cover art
     if (book.volumeInfo.industryIdentifiers) {
         const isbn10 = book.volumeInfo.industryIdentifiers.find(identifier => identifier.type === "ISBN_10");
@@ -97,9 +96,6 @@ function displayResults(book) {
         row.appendChild(coverImageCell);
     }
         row.addEventListener('click', function() {
-=======
-    row.addEventListener('click', function() {
->>>>>>> 97fe342126e8374bc6b6d0e816f4183f33ae3a49
         populateModal(book);
     })
 }
