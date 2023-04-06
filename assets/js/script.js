@@ -135,6 +135,7 @@ const populateModal = (book) => {
     booksLocal.push(books);//add it too arrray
     localStorage.setItem('booksLocal', JSON.stringify(booksLocal));//store
     });
+    console.log(booksLocal);
     const removeListButton = document.querySelector('.removeBtn');
     removeListButton.addEventListener('click', () => {
         let booksLocal = JSON.parse(localStorage.getItem('booksLocal')) || [];//defines array
@@ -143,7 +144,7 @@ const populateModal = (book) => {
         if (toRemove !== -1) {
         booksLocal.splice(toRemove, 1);
         }
-        localStorage.setItem('booksLocal', JSON.stringify(booksLocal));  
+        localStorage.setItem('booksLocal', JSON.stringify(booksLocal));
     })
 };
 

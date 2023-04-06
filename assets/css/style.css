@@ -1,0 +1,30 @@
+.book-spine {
+    width: 20px;
+    height: 140px;
+    background-color: #555; /* change to the desired color */
+    position: relative;
+  }
+
+  .book-spine-top,
+  .book-spine-middle,
+  .book-spine-bottom {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+  }
+
+  .book-spine-top {
+    top: 0;
+    background-color: #aaa; /* change to the desired color */
+  }
+
+  .book-spine-middle {
+    top: 50%;
+    margin-top: -1px;
+    background-color: #ccc; /* change to the desired color */
+  }
+
+  .book-spine-bottom {
+    bottom: 0;
+    background-color: #aaa; /* change to the desired color */
+  }
