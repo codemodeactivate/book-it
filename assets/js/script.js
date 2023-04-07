@@ -73,7 +73,7 @@ function displayResults(book) {
         const isbn10 = book.volumeInfo.industryIdentifiers.find(identifier => identifier.type === "ISBN_10");
         const isbn13 = book.volumeInfo.industryIdentifiers.find(identifier => identifier.type === "ISBN_13");
     if (isbn13) {
-        const coverUrl = `http://covers.openlibrary.org/b/isbn/${isbn13.identifier}-S.jpg`;
+        const coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn13.identifier}-S.jpg`;
         const coverImageCell = document.createElement("td");
         const coverImage = document.createElement("img");
         coverImage.src = coverUrl;
@@ -81,7 +81,7 @@ function displayResults(book) {
         row.appendChild(coverImageCell);
     } else if (isbn10) {
         const isbn10WithHyphens = `${isbn10.identifier.slice(0, 1)}-${isbn10.identifier.slice(1, 4)}-${isbn10.identifier.slice(4)}`;
-        const coverUrl = `http://covers.openlibrary.org/b/isbn/${isbn10WithHyphens}-S.jpg`;
+        const coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn10WithHyphens}-S.jpg`;
         const coverImageCell = document.createElement("td");
         const coverImage = document.createElement("img");
         coverImage.src = coverUrl;
