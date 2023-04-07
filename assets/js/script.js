@@ -2,7 +2,7 @@ const apiKey = "AIzaSyDgkEGYXtMspRSkU0XU4Q4OmgOU0URxhno";
 const form = document.querySelector("form");
 const resultsTable = document.querySelector("#results tbody");
 var resultsParam = 10; //default # of results returned. Setting to 10. Using var so it can be reassigned by user maybe?
-
+let booksLocal = JSON.parse(localStorage.getItem('booksLocal')) || [];//defines array
 //listen to the search box and search titles of books
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -130,10 +130,18 @@ const populateModal = (book) => {
 
     const addToListButton = document.querySelector('.addBtn');//listener for add to list button
     addToListButton.addEventListener('click', () => {
-    let booksLocal = JSON.parse(localStorage.getItem('booksLocal')) || [];//defines array
+    
     const books = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
     booksLocal.push(books);//add it too arrray
     localStorage.setItem('booksLocal', JSON.stringify(booksLocal));//store
+    //const wantToRead = document.getElementById("want-to-read");
+    //for (let book of booksLocal) {
+      //const title = book.title;
+      //const titleEl = document.createElement('div');
+      //titleEl.textContent = title;
+      //titleEl.classList.add('column', 'is-one-quarter'); // add class to new <p> element
+      //wantToRead.appendChild(titleEl);
+    //}
     });
     const removeListButton = document.querySelector('.removeBtn');
     removeListButton.addEventListener('click', () => {
@@ -215,3 +223,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+const bookArray = JSON.parse(localStorage.getItem('booksLocal'));
+console.log(bookArray);
