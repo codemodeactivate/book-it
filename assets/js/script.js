@@ -161,6 +161,10 @@ const populateModal = (book) => {
     })
 };
 
+const booksLocal = JSON.parse(localStorage.getItem('booksArr'));
+const haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
+console.log('have read: ', haveReadBooks);
+
 //hover effect for table
 const tableRows = document.getElementsByTagName("tr");
 resultsTable.addEventListener("mouseover", (event) => {
@@ -173,6 +177,21 @@ resultsTable.addEventListener("mouseover", (event) => {
         });
     }
 });
+
+
+//savenotes
+const saveNotes = document.getElementById("save-notes");
+saveNotes.addEventListener("click", saveBookNotes);
+
+function saveBookNotes(book) {
+    book.preventDefault();
+    const myNotes = document.getElementById("my-notes").value;
+    const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image, notes: myNotes};
+    booksObj['sort'] = 'haveRead';
+    booksArr.push(booksObj);
+    localStorage.setItem('booksArr', JSON.stringify(booksArr));
+    console.log(booksArr);
+};
 
 //Rating Stuff
 
