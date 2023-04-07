@@ -26,7 +26,7 @@ This is our first bootcamp project in which we're required to use at least two A
 
 
 ## Credits
-
+[Inspiration for bookshelf implementation](https://www.codeply.com/go/bp/7h2JKXv40U)
 
 ## User Story
 

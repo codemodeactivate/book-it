@@ -1,7 +1,9 @@
+
+
 .book-spine {
     width: 20px;
     height: 140px;
-    background-color: #555; /* change to the desired color */
+    background-color: #555;
     position: relative;
   }
 
@@ -15,27 +17,35 @@
 
   .book-spine-top {
     top: 0;
-    background-color: #aaa; /* change to the desired color */
+    background-color: #aaa;
   }
 
   .book-spine-middle {
     top: 50%;
     margin-top: -1px;
-    background-color: #ccc; /* change to the desired color */
+    background-color: #ccc;
   }
 
   .book-spine-bottom {
     bottom: 0;
-    background-color: #aaa; /* change to the desired color */
+    background-color: #aaa;
   }
+
   .box {
-    overflow-x: scroll;
     overflow-y: hidden;
-    border: 1px solid black;
     padding: 10px;
-  }
-  .box {
-    border: 1px solid black;
     margin: 0 -10px -10px -10px;
     overflow-x: hidden;
+    position: relative;
+    z-index:1;
+  }
+
+  .border-outer {
+    z-index:2;
+  }
+
+  .border-inner {
+    border: 10px solid #8B4513;
+    border-radius: 10px;
+    border-collapse: collapse;
   }
