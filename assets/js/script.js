@@ -229,3 +229,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const logArray = JSON.parse(localStorage.getItem('booksArr'));
 console.log(booksArr);
+
+bulmaCarousel.attach('#currently-reading', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
+  bulmaCarousel.attach('#want-to-read', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
+  bulmaCarousel.attach('#have-read', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
