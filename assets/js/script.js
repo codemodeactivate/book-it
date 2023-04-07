@@ -156,11 +156,7 @@ const populateModal = (book) => {
         if (removeWant !== -1) {
             booksArr.splice(removeWant, 1);
         }
-<<<<<<< HEAD
         localStorage.setItem('booksArr', JSON.stringify(booksArr));
-=======
-        localStorage.setItem('booksLocal', JSON.stringify(booksLocal));
->>>>>>> 24b478dbcec39a40538d56d75a2b37d30c3d4bd9
     })
 };
 
