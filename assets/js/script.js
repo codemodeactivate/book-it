@@ -149,13 +149,18 @@ const populateModal = (book) => {
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
     });
+    console.log(booksLocal);
     const removeListButton = document.querySelector('.removeBtn');
     removeListButton.addEventListener('click', () => {
         const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
         if (removeWant !== -1) {
             booksArr.splice(removeWant, 1);
         }
+<<<<<<< HEAD
         localStorage.setItem('booksArr', JSON.stringify(booksArr));
+=======
+        localStorage.setItem('booksLocal', JSON.stringify(booksLocal));
+>>>>>>> 24b478dbcec39a40538d56d75a2b37d30c3d4bd9
     })
 };
 
