@@ -2,7 +2,7 @@ const apiKey = "AIzaSyDgkEGYXtMspRSkU0XU4Q4OmgOU0URxhno";
 const form = document.querySelector("form");
 const resultsTable = document.querySelector("#results tbody");
 var resultsParam = 10; //default # of results returned. Setting to 10. Using var so it can be reassigned by user maybe?
-let booksLocal = JSON.parse(localStorage.getItem('booksLocal')) || [];//defines array
+let booksArr = JSON.parse(localStorage.getItem('booksArr')) || [];//defines array
 //listen to the search box and search titles of books
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -127,34 +127,37 @@ const populateModal = (book) => {
     modalImage.src = image;
     modalGenre.textContent = genre;
     modalSynopsis.textContent = synopsis;
-
-    const addToListButton = document.querySelector('.addBtn');//listener for add to list button
-    addToListButton.addEventListener('click', () => {
-    
-    const books = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
-    booksLocal.push(books);//add it too arrray
-    localStorage.setItem('booksLocal', JSON.stringify(booksLocal));//store
-    //const wantToRead = document.getElementById("want-to-read");
-    //for (let book of booksLocal) {
-      //const title = book.title;
-      //const titleEl = document.createElement('div');
-      //titleEl.textContent = title;
-      //titleEl.classList.add('column', 'is-one-quarter'); // add class to new <p> element
-      //wantToRead.appendChild(titleEl);
-    //}
+    //button stuff
+    const addToListButton = document.querySelector('.addBtn');
+    addToListButton.addEventListener('click', () => {//listener for add to list button
+        const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+        booksObj['sort'] = 'wantToRead';
+        booksArr.push(booksObj);//add it too arrray
+        localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+    });
+    const currentButton = document.querySelector('.currentBtn');
+    currentButton.addEventListener('click', () => {
+        const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+        booksObj['sort'] = 'currentlyReading';
+        booksArr.push(booksObj);//add it too arrray
+        localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+    });
+    const readBtn = document.querySelector('.readBtn');
+    readBtn.addEventListener('click', () => {
+        const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+        booksObj['sort'] = 'haveRead';
+        booksArr.push(booksObj);//add it too arrray
+        localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
     });
     const removeListButton = document.querySelector('.removeBtn');
     removeListButton.addEventListener('click', () => {
-        let booksLocal = JSON.parse(localStorage.getItem('booksLocal')) || [];//defines array
-        const toRemove = booksLocal.findIndex(books => books.title === title);// search for the object
-        // remove from array
-        if (toRemove !== -1) {
-        booksLocal.splice(toRemove, 1);
+        const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
+        if (removeWant !== -1) {
+            booksArr.splice(removeWant, 1);
         }
-        localStorage.setItem('booksLocal', JSON.stringify(booksLocal));  
+        localStorage.setItem('booksArr', JSON.stringify(booksArr));
     })
 };
-
 
 //hover effect for table
 const tableRows = document.getElementsByTagName("tr");
@@ -223,5 +226,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-const bookArray = JSON.parse(localStorage.getItem('booksLocal'));
-console.log(bookArray);
+const logArray = JSON.parse(localStorage.getItem('booksArr'));
+console.log(booksArr);
