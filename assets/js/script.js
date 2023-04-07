@@ -134,6 +134,7 @@ const populateModal = (book) => {
         booksObj['sort'] = 'wantToRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        console.log(booksArr);
     });
     const currentButton = document.querySelector('.currentBtn');
     currentButton.addEventListener('click', () => {
@@ -172,6 +173,43 @@ resultsTable.addEventListener("mouseover", (event) => {
         });
     }
 });
+
+//Rating Stuff
+
+//Own Rating Storage
+const stars = document.querySelectorAll('#my-rating .fa-star');
+
+function setRating(rating) {
+    stars.forEach(function(star, index) {
+      if (index < rating) {
+        star.classList.add('fa-solid');
+      } else {
+        star.classList.remove('fa-solid');
+      }
+    });
+    localStorage.setItem('rating', rating);
+  }
+
+  stars.forEach(function(star, index) {
+    star.addEventListener("mouseover", function() {
+      for (let i = 0; i <= index; i++) {
+        stars[i].classList.add("fa-solid");
+      }
+    });
+
+    star.addEventListener("mouseout", function() {
+      for (let i = index + 1; i < stars.length; i++) {
+        stars[i].classList.remove("fa-solid");
+      }
+    });
+
+    star.addEventListener("click", function() {
+      const rating = index + 1;
+      setRating(rating);
+      console.log(rating);
+    });
+  });
+
 
 
 
