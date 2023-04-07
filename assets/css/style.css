@@ -28,3 +28,9 @@
     bottom: 0;
     background-color: #aaa; /* change to the desired color */
   }
+  .box {
+    overflow-x: scroll;
+  }
+  .box {
+    overflow-x: hidden;
+  }
