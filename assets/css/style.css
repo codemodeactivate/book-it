@@ -30,7 +30,12 @@
   }
   .box {
     overflow-x: scroll;
+    overflow-y: hidden;
+    border: 1px solid black;
+    padding: 10px;
   }
   .box {
+    border: 1px solid black;
+    margin: 0 -10px -10px -10px;
     overflow-x: hidden;
   }
