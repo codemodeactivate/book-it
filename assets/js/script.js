@@ -180,31 +180,36 @@ resultsTable.addEventListener("mouseover", (event) => {
 const stars = document.querySelectorAll('#my-rating .fa-star');
 
 function setRating(rating) {
-  for (let i = 0; i < stars.length; i++) {
-    if (i < rating) {
-      stars[i].classList.add('fa-solid');
-    } else {
-      stars[i].classList.remove('fa-solid');
-    }
+    stars.forEach(function(star, index) {
+      if (index < rating) {
+        star.classList.add('fa-solid');
+      } else {
+        star.classList.remove('fa-solid');
+      }
+    });
+    localStorage.setItem('rating', rating);
   }
-  localStorage.setItem('rating', rating);
-}
-stars.forEach(function(star) {
+
+  stars.forEach(function(star, index) {
     star.addEventListener("mouseover", function() {
-        star.classList.add('fa-solid')
-    })
-})
-stars.forEach(function(star) {
+      for (let i = 0; i <= index; i++) {
+        stars[i].classList.add("fa-solid");
+      }
+    });
+
     star.addEventListener("mouseout", function() {
-        star.classList.remove('fa-solid')
-    })
-})
-stars.forEach(function(star) {
-  star.addEventListener('click', function() {
-    const rating = this.getAttribute('data-rating');
-    setRating(rating);
+      for (let i = index + 1; i < stars.length; i++) {
+        stars[i].classList.remove("fa-solid");
+      }
+    });
+
+    star.addEventListener("click", function() {
+      const rating = index + 1;
+      setRating(rating);
+      console.log(rating);
+    });
   });
-});
+
 
 
 
