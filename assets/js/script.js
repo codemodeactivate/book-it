@@ -1,3 +1,5 @@
+//const { bulmaCarousel } = require("bulma-carousel");
+
 const apiKey = "AIzaSyDgkEGYXtMspRSkU0XU4Q4OmgOU0URxhno";
 const form = document.querySelector("form");
 const resultsTable = document.querySelector("#results tbody");
@@ -134,6 +136,7 @@ const populateModal = (book) => {
         booksObj['sort'] = 'wantToRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        populateShelves();
     });
     const currentButton = document.querySelector('.currentBtn');
     currentButton.addEventListener('click', () => {
@@ -141,6 +144,7 @@ const populateModal = (book) => {
         booksObj['sort'] = 'currentlyReading';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        populateShelves();
     });
     const readBtn = document.querySelector('.readBtn');
     readBtn.addEventListener('click', () => {
@@ -148,8 +152,8 @@ const populateModal = (book) => {
         booksObj['sort'] = 'haveRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        populateShelves();
     });
-    console.log(booksLocal);
     const removeListButton = document.querySelector('.removeBtn');
     removeListButton.addEventListener('click', () => {
         const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
@@ -157,9 +161,64 @@ const populateModal = (book) => {
             booksArr.splice(removeWant, 1);
         }
         localStorage.setItem('booksArr', JSON.stringify(booksArr));
+        populateShelves();
     })
 };
+const populateShelves = () => {
+const booksData = localStorage.getItem('booksArr');
+const booksArr = JSON.parse(booksData);
 
+const booksWant = document.getElementById("want-to-read");
+const booksCurrent = document.getElementById("currently-reading");
+const booksHave = document.getElementById("have-read");
+
+const sortWant = "wantToRead";
+const sortHave = 'haveRead';
+const sortCurrently = 'currentlyReading';
+
+// loop through array and create div element for each obj
+booksArr.forEach(booksObj => {
+    // check the sort element then add title to right place
+    if (booksObj.sort === sortWant) {
+      let wantElement = document.createElement('div');
+      wantElement.classList.add('column', 'is-one-quarter');
+      wantElement.innerText = booksObj.title;
+      booksWant.appendChild(wantElement);
+    }
+    if (booksObj.sort === sortHave) {
+        let haveElement = document.createElement('div');
+        haveElement.classList.add('column', 'is-one-quarter');
+        haveElement.innerText = booksObj.title;
+        booksHave.appendChild(haveElement);
+      }
+    if (booksObj.sort === sortCurrently) {
+        let currentElement = document.createElement('div');
+        currentElement.classList.add('column', 'is-one-quarter');
+        currentElement.innerText = booksObj.title;
+        booksCurrent.appendChild(currentElement);
+    }
+  });
+  //initialize carousel
+  bulmaCarousel.attach('#currently-reading', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
+  bulmaCarousel.attach('#want-to-read', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
+  bulmaCarousel.attach('#have-read', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
+}
+populateShelves();
 //hover effect for table
 const tableRows = document.getElementsByTagName("tr");
 resultsTable.addEventListener("mouseover", (event) => {
@@ -229,22 +288,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const logArray = JSON.parse(localStorage.getItem('booksArr'));
 console.log(booksArr);
-
-bulmaCarousel.attach('#currently-reading', {
-    slidesToScroll: 1,
-    slidesToShow: 3,
-    infinite: true,
-    loop: true,
-  });
-  bulmaCarousel.attach('#want-to-read', {
-    slidesToScroll: 1,
-    slidesToShow: 3,
-    infinite: true,
-    loop: true,
-  });
-  bulmaCarousel.attach('#have-read', {
-    slidesToScroll: 1,
-    slidesToShow: 3,
-    infinite: true,
-    loop: true,
-  });
