@@ -136,7 +136,8 @@ const populateModal = (book) => {
         booksObj['sort'] = 'wantToRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        populateShelves();
+        //populateShelves();
+        window.location.reload();
     });
     const currentButton = document.querySelector('.currentBtn');
     currentButton.addEventListener('click', () => {
@@ -144,7 +145,8 @@ const populateModal = (book) => {
         booksObj['sort'] = 'currentlyReading';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        populateShelves();
+        //populateShelves();
+        window.location.reload();
     });
     const readBtn = document.querySelector('.readBtn');
     readBtn.addEventListener('click', () => {
@@ -152,7 +154,8 @@ const populateModal = (book) => {
         booksObj['sort'] = 'haveRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        populateShelves();
+        //populateShelves();
+        window.location.reload();
     });
     const removeListButton = document.querySelector('.removeBtn');
     removeListButton.addEventListener('click', () => {
@@ -161,7 +164,8 @@ const populateModal = (book) => {
             booksArr.splice(removeWant, 1);
         }
         localStorage.setItem('booksArr', JSON.stringify(booksArr));
-        populateShelves();
+        //populateShelves();
+        window.location.reload();
     })
 };
 const populateShelves = () => {
@@ -248,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeAllModals() {
         (document.querySelectorAll(".modal") || []).forEach(($modal) => {
             closeModal($modal);
+            populateShelves();
         });
     }
 
