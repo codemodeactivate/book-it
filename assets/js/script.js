@@ -299,22 +299,74 @@ booksArr.forEach(booksObj => {
   });
   //initialize carousel
   bulmaCarousel.attach('#currently-reading', {
-    slidesToScroll: 1,
-    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    animation: 'slide',
     infinite: true,
-    loop: true,
+    navigation: true,
+    pagination: true,
+    items: 3,
+    itemsMobile: 1,
+    itemsTablet: 2,
+    itemsDesktop: 3,
+    itemsDesktopSmall: 2,
+    itemsWidescreen: 3,
+    mobileBreakpoint: 480,
+    tabletBreakpoint: 768,
+    desktopBreakpoint: 1024,
+    widescreenBreakpoint: 1216,
+    fullhdBreakpoint: 1408,
+    center: true,
+    touch: true,
+    swipeThreshold: 50,
+    speed: 500
   });
   bulmaCarousel.attach('#want-to-read', {
-    slidesToScroll: 1,
-    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    animation: 'slide',
     infinite: true,
-    loop: true,
+    navigation: true,
+    pagination: true,
+    items: 3,
+    itemsMobile: 1,
+    itemsTablet: 2,
+    itemsDesktop: 3,
+    itemsDesktopSmall: 2,
+    itemsWidescreen: 3,
+    mobileBreakpoint: 480,
+    tabletBreakpoint: 768,
+    desktopBreakpoint: 1024,
+    widescreenBreakpoint: 1216,
+    fullhdBreakpoint: 1408,
+    center: true,
+    touch: true,
+    swipeThreshold: 50,
+    speed: 500
   });
+  
   bulmaCarousel.attach('#have-read', {
-    slidesToScroll: 1,
-    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    animation: 'slide',
     infinite: true,
-    loop: true,
+    navigation: true,
+    pagination: true,
+    items: 3,
+    itemsMobile: 1,
+    itemsTablet: 2,
+    itemsDesktop: 3,
+    itemsDesktopSmall: 2,
+    itemsWidescreen: 3,
+    mobileBreakpoint: 480,
+    tabletBreakpoint: 768,
+    desktopBreakpoint: 1024,
+    widescreenBreakpoint: 1216,
+    fullhdBreakpoint: 1408,
+    center: true,
+    touch: true,
+    swipeThreshold: 50,
+    speed: 500
   });
 }
 populateShelves();
@@ -443,19 +495,19 @@ console.log(booksArr);
 
 bulmaCarousel.attach('#currently-reading', {
     slidesToScroll: 1,
-    slidesToShow: 3,
+    slidesToShow: 4,
     infinite: true,
     loop: true,
   });
   bulmaCarousel.attach('#want-to-read', {
     slidesToScroll: 1,
-    slidesToShow: 3,
+    slidesToShow: 4,
     infinite: true,
     loop: true,
   });
   bulmaCarousel.attach('#have-read', {
     slidesToScroll: 1,
-    slidesToShow: 3,
+    slidesToShow: 4,
     infinite: true,
     loop: true,
   });
