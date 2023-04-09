@@ -170,7 +170,8 @@ const populateModal = (book) => {
 };
 const populateShelves = () => {
 const booksData = localStorage.getItem('booksArr');
-const booksArr = JSON.parse(booksData);
+const booksArr = JSON.parse(booksData) || [];
+//console.log(booksData);
 
 const booksWant = document.getElementById("want-to-read");
 const booksCurrent = document.getElementById("currently-reading");
@@ -179,31 +180,62 @@ const booksHave = document.getElementById("have-read");
 const sortWant = "wantToRead";
 const sortHave = 'haveRead';
 const sortCurrently = 'currentlyReading';
-
+let haveReadBooks = [];
+let wantReadBooks = [];
+let currentlyReadBooks = [];
 const booksLocal = JSON.parse(localStorage.getItem('booksArr'));
-const haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
-console.log('have read: ', haveReadBooks);
+    //should fix first time user?
+    if (booksArr.length > 0) {
+        wantReadBooks = booksLocal.filter(book => book.sort === 'wantToRead');
+        haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
+        currentlyReadBooks = booksLocal.filter(book => book.sort === 'currentlyReading');
+    }
+//console.log('have read: ', haveReadBooks);
 
 // loop through array and create div element for each obj
 booksArr.forEach(booksObj => {
     // check the sort element then add title to right place
     if (booksObj.sort === sortWant) {
-      let wantElement = document.createElement('div');
-      wantElement.classList.add('column', 'is-one-quarter');
-      wantElement.innerText = booksObj.title;
-      booksWant.appendChild(wantElement);
-    }
+        let wantElement = document.createElement('div');
+        wantElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        wantElement.innerText = booksObj.title;
+        wantElement.style.backgroundImage = `url(${booksObj.cover})`;
+        let wantLink = document.createElement('a');
+        wantLink.href = '#';
+        wantLink.onclick = () => {
+            const modal = document.getElementById('book-display');
+            modal.classList.add('is-active');
+        }
+        wantLink.appendChild(wantElement);
+        booksWant.appendChild(wantLink); // Change this line
+      }
+
     if (booksObj.sort === sortHave) {
         let haveElement = document.createElement('div');
-        haveElement.classList.add('column', 'is-one-quarter');
-        haveElement.innerText = booksObj.title;
-        booksHave.appendChild(haveElement);
+        haveElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        haveElement.style.backgroundImage = `url(${booksObj.cover})`;
+        let haveLink = document.createElement('a');
+        haveLink.href = '#';
+        haveLink.onclick = () => {
+            const modal = document.getElementById('have-read-modal');
+            modal.classList.add('is-active');
+        }
+        haveLink.appendChild(haveElement);
+        booksHave.appendChild(haveLink);
       }
     if (booksObj.sort === sortCurrently) {
         let currentElement = document.createElement('div');
-        currentElement.classList.add('column', 'is-one-quarter');
+        currentElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
         currentElement.innerText = booksObj.title;
-        booksCurrent.appendChild(currentElement);
+        currentElement.style.backgroundImage = `url(${booksObj.cover})`;
+        let currentLink = document.createElement('a');
+        currentLink.href = '#'
+        currentLink.onclick = () => {
+            const modal = document.getElementById('have-read-modal');
+            modal.classList.add('is-active');
+        }
+        currentLink.appendChild(currentElement);
+        booksCurrent.appendChild(currentLink);
     }
   });
   //initialize carousel
