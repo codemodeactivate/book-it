@@ -1,3 +1,5 @@
+//const { bulmaCarousel } = require("bulma-carousel");
+
 const apiKey = "AIzaSyDgkEGYXtMspRSkU0XU4Q4OmgOU0URxhno";
 const form = document.querySelector("form");
 const resultsTable = document.querySelector("#results tbody");
@@ -35,6 +37,7 @@ form.addEventListener("submit", (event) => {
         })
         .catch((error) => console.error(error)); //if nothing is found do something
 });
+
 //display results to the table from when a user searches for them
 function displayResults(book) {
     const title = book.volumeInfo.title;
@@ -56,11 +59,16 @@ function displayResults(book) {
     const previewLinkButton = document.createElement("a");
     previewLinkButton.textContent = "Preview";
     previewLinkButton.href = previewLink;
+    //previewLinkCell.appendChild(previewLinkButton);
     row.appendChild(titleCell);
     row.appendChild(authorCell);
     row.appendChild(publishedDateCell);
     row.classList.add('book-row', 'js-modal-trigger');
+    //row.dataset.href = "previewLink"; This would attach a link to the google books link to each row from the fetched results. Instead we're opting to make the rows clickable and populate modal
     row.dataset.target = "book-display";
+
+
+    //row.appendChild(previewLinkCell);
     resultsTable.appendChild(row);
     //get then display cover art
     if (book.volumeInfo.industryIdentifiers) {
@@ -97,6 +105,11 @@ function displayResults(book) {
         populateModal(book);
     })
 }
+
+
+
+
+
 //when user clicks on results in table, modal opens and info is passed to it
 const populateModal = (book) => {
     const title = book.volumeInfo.title;
@@ -123,7 +136,8 @@ const populateModal = (book) => {
         booksObj['sort'] = 'wantToRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        populateShelves();
+        //populateShelves();
+        window.location.reload();
     });
     const currentButton = document.querySelector('.currentBtn');
     currentButton.addEventListener('click', () => {
@@ -131,6 +145,7 @@ const populateModal = (book) => {
         booksObj['sort'] = 'currentlyReading';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        //populateShelves();
         window.location.reload();
     });
     const readBtn = document.querySelector('.readBtn');
@@ -139,6 +154,7 @@ const populateModal = (book) => {
         booksObj['sort'] = 'haveRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        //populateShelves();
         window.location.reload();
     });
     const removeListButton = document.querySelector('.removeBtn');
@@ -148,6 +164,7 @@ const populateModal = (book) => {
             booksArr.splice(removeWant, 1);
         }
         localStorage.setItem('booksArr', JSON.stringify(booksArr));
+        //populateShelves();
         window.location.reload();
     })
 };
@@ -159,6 +176,7 @@ const booksArr = JSON.parse(booksData) || [];
 const booksWant = document.getElementById("want-to-read");
 const booksCurrent = document.getElementById("currently-reading");
 const booksHave = document.getElementById("have-read");
+
 const sortWant = "wantToRead";
 const sortHave = 'haveRead';
 const sortCurrently = 'currentlyReading';
@@ -325,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
             populateShelves();
         });
     }
+
     // Add a click event on buttons to open a specific modal
     (document.querySelectorAll(".js-modal-trigger") || []).forEach(
         ($trigger) => {
@@ -336,6 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     );
+
     // Add a click event on various child elements to close the parent modal
     (
         document.querySelectorAll(
@@ -348,6 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
             closeModal($target);
         });
     });
+
     // Add a keyboard event to close all modals
     document.addEventListener("keydown", (event) => {
         const e = event || window.event;
