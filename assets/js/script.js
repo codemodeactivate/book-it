@@ -170,7 +170,8 @@ const populateModal = (book) => {
 };
 const populateShelves = () => {
 const booksData = localStorage.getItem('booksArr');
-const booksArr = JSON.parse(booksData);
+const booksArr = JSON.parse(booksData) || [];
+console.log(booksData);
 
 const booksWant = document.getElementById("want-to-read");
 const booksCurrent = document.getElementById("currently-reading");
@@ -179,9 +180,11 @@ const booksHave = document.getElementById("have-read");
 const sortWant = "wantToRead";
 const sortHave = 'haveRead';
 const sortCurrently = 'currentlyReading';
-
+let haveReadBooks = [];
 const booksLocal = JSON.parse(localStorage.getItem('booksArr'));
-const haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
+if (booksArr.length > 0) {
+    haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
+}
 console.log('have read: ', haveReadBooks);
 
 // loop through array and create div element for each obj
