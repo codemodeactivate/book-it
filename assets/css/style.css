@@ -32,7 +32,7 @@
 
   }
 
-.is-on-shelf {
+  .is-on-shelf {
     box-shadow: 0px 17px 11px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     max-height: 135px;
