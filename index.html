@@ -332,14 +332,14 @@
     </div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p id="book-title" class="modal-card-title has-text-centered">BOOK TITLE</p>
+        <p id="book-title-outer" class="modal-card-title has-text-centered">BOOK TITLE</p>
         <button class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body columns is-multiline mb-0 media">
         <div class="column is-two-fifths is-flex is-flex-direction-column is-justify-content-center v-full">
           <div class="column is-flex is-flex-direction-column is-justify-content-center">
             <!--Meta Content-->
-            <div id="book-title" class="is-flex is-align-items-center">
+            <div id="book-title-inner" class="is-flex is-align-items-center">
               BOOK TITLE
             </div>
             <div id="book-author" class="is-flex is-align-items-center">
@@ -464,7 +464,7 @@
           </div>
         </div>
         <div class="column is-three-fifths">
-          <figure class="image is-1by1">
+          <figure id="book-display-image" class="image is-1by1">
             <img id="search-book-image" src="https://bulma.io/images/placeholders/480x640.png"
               alt="Image Description" />
           </figure>
