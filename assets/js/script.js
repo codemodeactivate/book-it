@@ -171,7 +171,7 @@ const populateModal = (book) => {
 const populateShelves = () => {
 const booksData = localStorage.getItem('booksArr');
 const booksArr = JSON.parse(booksData) || [];
-console.log(booksData);
+//console.log(booksData);
 
 const booksWant = document.getElementById("want-to-read");
 const booksCurrent = document.getElementById("currently-reading");
@@ -192,20 +192,23 @@ booksArr.forEach(booksObj => {
     // check the sort element then add title to right place
     if (booksObj.sort === sortWant) {
       let wantElement = document.createElement('div');
-      wantElement.classList.add('column', 'is-one-quarter');
+      wantElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
       wantElement.innerText = booksObj.title;
+      wantElement.style.backgroundImage = `url(${booksObj.cover})`;
       booksWant.appendChild(wantElement);
     }
     if (booksObj.sort === sortHave) {
         let haveElement = document.createElement('div');
-        haveElement.classList.add('column', 'is-one-quarter');
+        haveElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        haveElement.style.backgroundImage = `url(${booksObj.cover})`;
         haveElement.innerText = booksObj.title;
         booksHave.appendChild(haveElement);
       }
     if (booksObj.sort === sortCurrently) {
         let currentElement = document.createElement('div');
-        currentElement.classList.add('column', 'is-one-quarter');
+        currentElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
         currentElement.innerText = booksObj.title;
+        currentElement.style.backgroundImage = `url(${booksObj.cover})`;
         booksCurrent.appendChild(currentElement);
     }
   });
