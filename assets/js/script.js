@@ -180,6 +180,10 @@ const sortWant = "wantToRead";
 const sortHave = 'haveRead';
 const sortCurrently = 'currentlyReading';
 
+const booksLocal = JSON.parse(localStorage.getItem('booksArr'));
+const haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
+console.log('have read: ', haveReadBooks);
+
 // loop through array and create div element for each obj
 booksArr.forEach(booksObj => {
     // check the sort element then add title to right place
@@ -235,6 +239,58 @@ resultsTable.addEventListener("mouseover", (event) => {
         });
     }
 });
+
+
+//savenotes
+const saveNotes = document.getElementById("save-notes");
+saveNotes.addEventListener("click", saveBookNotes);
+
+function saveBookNotes(book) {
+    book.preventDefault();
+    const myNotes = document.getElementById("my-notes").value;
+    const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image, notes: myNotes};
+    booksObj['sort'] = 'haveRead';
+    booksArr.push(booksObj);
+    localStorage.setItem('booksArr', JSON.stringify(booksArr));
+    console.log(booksArr);
+};
+
+//Rating Stuff
+
+//Own Rating Storage
+const stars = document.querySelectorAll('#my-rating .fa-star');
+
+function setRating(rating) {
+    stars.forEach(function(star, index) {
+      if (index < rating) {
+        star.classList.add('fa-solid');
+      } else {
+        star.classList.remove('fa-solid');
+      }
+    });
+    localStorage.setItem('rating', rating);
+  }
+
+  stars.forEach(function(star, index) {
+    star.addEventListener("mouseover", function() {
+      for (let i = 0; i <= index; i++) {
+        stars[i].classList.add("fa-solid");
+      }
+    });
+
+    star.addEventListener("mouseout", function() {
+      for (let i = index + 1; i < stars.length; i++) {
+        stars[i].classList.remove("fa-solid");
+      }
+    });
+
+    star.addEventListener("click", function() {
+      const rating = index + 1;
+      setRating(rating);
+      console.log(rating);
+    });
+  });
+
 
 
 
@@ -293,3 +349,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const logArray = JSON.parse(localStorage.getItem('booksArr'));
 console.log(booksArr);
+
+bulmaCarousel.attach('#currently-reading', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
+  bulmaCarousel.attach('#want-to-read', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });
+  bulmaCarousel.attach('#have-read', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    infinite: true,
+    loop: true,
+  });

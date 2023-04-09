@@ -32,6 +32,8 @@
 
   }
 
+
+
   .box {
     overflow-y: hidden;
     padding: 10px;
@@ -59,6 +61,17 @@
     box-shadow: 60px -16px teal;
 
   }
+
+  /*star stuff*/
+  #my-rating .fa-star {
+    cursor: pointer;
+  }
+
+  #my-rating .fa-star:hover,
+  #my-rating .fa-star:hover ~ .fa-star {
+    color: #ffe08a;
+  }
+
 
 
   /*CUSTOMIZING THE CAROUSEL AREA*/
