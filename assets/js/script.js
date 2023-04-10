@@ -238,6 +238,7 @@ booksArr.forEach(booksObj => {
         booksCurrent.appendChild(currentLink);
     }
   });
+  
   //initialize carousel
   bulmaCarousel.attach('#currently-reading', {
     slidesToScroll: 1,
@@ -286,7 +287,6 @@ function saveBookNotes(book) {
     localStorage.setItem('booksArr', JSON.stringify(booksArr));
     console.log(booksArr);
 };
-
 //Rating Stuff
 
 //Own Rating Storage
@@ -319,7 +319,7 @@ function setRating(rating) {
     star.addEventListener("click", function() {
       const rating = index + 1;
       setRating(rating);
-      console.log(rating);
+      //console.log(rating);
     });
   });
 
