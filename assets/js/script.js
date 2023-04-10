@@ -118,7 +118,6 @@ const populateModal = (book) => {
         booksObj['sort'] = 'wantToRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        //populateShelves();
         window.location.reload();
     });
     const currentButton = document.querySelector('.currentBtn');
@@ -127,7 +126,6 @@ const populateModal = (book) => {
         booksObj['sort'] = 'currentlyReading';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        //populateShelves();
         window.location.reload();
     });
     const readBtn = document.querySelector('.readBtn');
@@ -136,7 +134,6 @@ const populateModal = (book) => {
         booksObj['sort'] = 'haveRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        //populateShelves();
         window.location.reload();
     });
     const removeListButton = document.querySelector('.removeBtn');
@@ -146,7 +143,6 @@ const populateModal = (book) => {
             booksArr.splice(removeWant, 1);
         }
         localStorage.setItem('booksArr', JSON.stringify(booksArr));
-        //populateShelves();
         window.location.reload();
     })
 };
@@ -175,14 +171,13 @@ booksArr.forEach(booksObj => {
     if (booksObj.sort === sortWant) {
         let wantElement = document.createElement('div');
         wantElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
-        wantElement.innerText = booksObj.title;
         wantElement.style.backgroundImage = `url(${booksObj.cover})`;
         let wantLink = document.createElement('a');
         wantLink.href = '#';
         wantLink.onclick = () => {
             const modal = document.getElementById('book-display');
             const title = booksObj.title;
-            author = booksObj.author.join(', ');
+            const author = booksObj.author
             const genre = booksObj.genre;
             const synopsis = booksObj.synopsis;
             const image = booksObj.cover;
@@ -201,6 +196,39 @@ booksArr.forEach(booksObj => {
             modalGenre.textContent = genre;
             modalSynopsis.textContent = synopsis;
             modal.classList.add('is-active');
+            const currentButton = document.querySelector('.currentBtn');
+            currentButton.addEventListener('click', () => {
+                const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+                booksObj['sort'] = 'currentlyReading';
+                booksArr.push(booksObj);//add it too arrray
+                const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
+                if (removeWant !== -1) {
+                    booksArr.splice(removeWant, 1);
+                }
+                localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+                window.location.reload();
+            });
+            const readBtn = document.querySelector('.readBtn');
+            readBtn.addEventListener('click', () => {
+                const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+                booksObj['sort'] = 'haveRead';
+                booksArr.push(booksObj);//add it too arrray
+                const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
+                if (removeWant !== -1) {
+                    booksArr.splice(removeWant, 1);
+                }
+                localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+                window.location.reload();
+            });
+            const removeListButton = document.querySelector('.removeBtn');
+            removeListButton.addEventListener('click', () => {
+                const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
+                if (removeWant !== -1) {
+                    booksArr.splice(removeWant, 1);
+                }
+                localStorage.setItem('booksArr', JSON.stringify(booksArr));
+                window.location.reload();
+            })
         }
         wantLink.appendChild(wantElement);
         booksWant.appendChild(wantLink); // Change this line
@@ -214,7 +242,7 @@ booksArr.forEach(booksObj => {
         haveLink.onclick = () => {
             const modal = document.getElementById('have-read-modal');
             const title = booksObj.title;
-            author = booksObj.author.join(', ');
+            const author = booksObj.author
             const genre = booksObj.genre;
             const synopsis = booksObj.synopsis;
             const image = booksObj.cover;
@@ -236,6 +264,8 @@ booksArr.forEach(booksObj => {
             modalSynopsis.textContent = synopsis;
             modalNotes.textContent = notes;
             modal.classList.add('is-active');
+            const readBtn = document.getElementById('haveReadBtn');
+            readBtn.style.display = "none";
             const saveNotes = document.getElementById("save-notes");
             saveNotes.addEventListener("click", saveBookNotes);
             function saveBookNotes(book) {
@@ -252,6 +282,16 @@ booksArr.forEach(booksObj => {
             localStorage.setItem("booksArr", JSON.stringify(updatedArray));
             window.location.reload();
             }
+            const removeListButton = document.getElementById('removeBtn2');
+            removeListButton.addEventListener('click', () => {
+                const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
+                if (removeWant !== -1) {
+                    booksArr.splice(removeWant, 1);
+                }
+                localStorage.setItem('booksArr', JSON.stringify(booksArr));
+                window.location.reload();
+
+        });
         }
         haveLink.appendChild(haveElement);
         booksHave.appendChild(haveLink);
@@ -259,14 +299,13 @@ booksArr.forEach(booksObj => {
     if (booksObj.sort === sortCurrently) {
         let currentElement = document.createElement('div');
         currentElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
-        currentElement.innerText = booksObj.title;
         currentElement.style.backgroundImage = `url(${booksObj.cover})`;
         let currentLink = document.createElement('a');
         currentLink.href = '#'
         currentLink.onclick = () => {
             const modal = document.getElementById('have-read-modal');
             const title = booksObj.title;
-            author = booksObj.author.join(', ');
+            const author = booksObj.author
             const genre = booksObj.genre;
             const synopsis = booksObj.synopsis;
             const image = booksObj.cover;
@@ -304,6 +343,28 @@ booksArr.forEach(booksObj => {
             localStorage.setItem("booksArr", JSON.stringify(updatedArray));
             window.location.reload();
             }
+            const readBtn = document.getElementById('haveReadBtn');
+            readBtn.addEventListener('click', () => {
+                const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+                booksObj['sort'] = 'haveRead';
+                booksArr.push(booksObj);//add it too arrray
+                const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
+                if (removeWant !== -1) {
+                    booksArr.splice(removeWant, 1);
+                }
+                localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+                window.location.reload();
+            });
+            const removeListButton = document.getElementById('removeBtn2');
+            removeListButton.addEventListener('click', () => {
+                const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
+                if (removeWant !== -1) {
+                    booksArr.splice(removeWant, 1);
+                }
+                localStorage.setItem('booksArr', JSON.stringify(booksArr));
+                window.location.reload();
+
+        });
         }
         currentLink.appendChild(currentElement);
         booksCurrent.appendChild(currentLink);
@@ -464,9 +525,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ) || []
     ).forEach(($close) => {
         const $target = $close.closest(".modal");
-
-        $close.addEventListener("click", () => {
-            closeModal($target);
+    
+        $close.addEventListener("click", (event) => {
+            if (!event.target.classList.contains("modal-no-close")) {
+                closeModal($target);
+            }
         });
     });
 
@@ -482,24 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const logArray = JSON.parse(localStorage.getItem('booksArr'));
 console.log(booksArr);
-bulmaCarousel.attach('#currently-reading', {
-    slidesToScroll: 1,
-    slidesToShow: 4,
-    infinite: true,
-    loop: true,
-  });
-  bulmaCarousel.attach('#want-to-read', {
-    slidesToScroll: 1,
-    slidesToShow: 4,
-    infinite: true,
-    loop: true,
-  });
-  bulmaCarousel.attach('#have-read', {
-    slidesToScroll: 1,
-    slidesToShow: 4,
-    infinite: true,
-    loop: true,
-  });
+
   document.addEventListener('DOMContentLoaded', () => {
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
