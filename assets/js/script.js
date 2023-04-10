@@ -170,7 +170,7 @@ booksArr.forEach(booksObj => {
     // check the sort element then add title to right place
     if (booksObj.sort === sortWant) {
         let wantElement = document.createElement('div');
-        wantElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        wantElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7', 'margin-top');
         wantElement.style.backgroundImage = `url(${booksObj.cover})`;
         let wantLink = document.createElement('a');
         wantLink.href = '#';
@@ -475,17 +475,8 @@ resultsTable.addEventListener("mouseover", (event) => {
 //Own Rating Storage
 const stars = document.querySelectorAll('#my-rating .fa-star');
 let currentRating = 0;
-function setRating(rating) {
-    stars.forEach(function(star, index) {
-      if (index < rating) {
-        star.classList.add('fa-solid');
-      } else {
-        star.classList.remove('fa-solid');
-      }
-    });
-    currentRating = rating;
-  }
 
+if (currentRating === 0) {
   stars.forEach(function(star, index) {
     star.addEventListener("mouseover", function() {
       for (let i = 0; i <= index; i++) {
@@ -504,6 +495,18 @@ function setRating(rating) {
       setRating(rating);
     });
   });
+}
+
+function setRating(rating) {
+  stars.forEach(function(star, index) {
+    if (index < rating) {
+      star.classList.add('fa-solid');
+    } else {
+      star.classList.remove('fa-solid');
+    }
+  });
+  currentRating = rating;
+}
 //modal stuff
 document.addEventListener("DOMContentLoaded", () => {
     // Functions to open and close a modal
