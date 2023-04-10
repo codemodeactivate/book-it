@@ -204,12 +204,30 @@ booksArr.forEach(booksObj => {
         wantLink.href = '#';
         wantLink.onclick = () => {
             const modal = document.getElementById('book-display');
+            const title = booksObj.title;
+            author = booksObj.author.join(', ');
+            const genre = booksObj.genre;
+            const synopsis = booksObj.synopsis;
+            const image = booksObj.cover;
+            const modalTitle = document.getElementById("search-book-title");
+            const modalAuthor = document.getElementById("search-book-authors");
+            const modalTitleInner = document.getElementById("search-book-title-inner");
+            const modalGenre = document.getElementById("search-book-genre");
+            const modalSynopsis = document.getElementById("search-book-synopsis");
+            const modalImage = document.getElementById("search-book-image");
+            modalTitle.textContent = title;
+            modalTitleInner.textContent = title;
+            modalAuthor.textContent = author;
+            modalImage.src = image;
+            modalImage.style.width = 'auto';
+            modalImage.style.maxHeight = '400px';
+            modalGenre.textContent = genre;
+            modalSynopsis.textContent = synopsis;
             modal.classList.add('is-active');
         }
         wantLink.appendChild(wantElement);
         booksWant.appendChild(wantLink); // Change this line
       }
-
     if (booksObj.sort === sortHave) {
         let haveElement = document.createElement('div');
         haveElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
@@ -218,6 +236,26 @@ booksArr.forEach(booksObj => {
         haveLink.href = '#';
         haveLink.onclick = () => {
             const modal = document.getElementById('have-read-modal');
+            const title = booksObj.title;
+            author = booksObj.author.join(', ');
+            const genre = booksObj.genre;
+
+            const synopsis = booksObj.synopsis;
+            const image = booksObj.cover;
+            const modalAuthor = document.getElementById('book-author')
+            const modalTitle = document.getElementById("book-title-outer");
+            const modalTitleInner = document.getElementById("book-title-inner")
+            const modalGenre = document.getElementById("book-genre");
+            const modalSynopsis = document.getElementById("book-synopsis");
+            const modalImage = document.getElementById("book-image");
+            modalTitle.textContent = title;
+            modalTitleInner.textContent = title;
+            modalAuthor.textContent = author;
+            modalImage.src = image;
+            modalImage.style.maxHeight = '400px';
+            modalImage.style.width = 'auto';
+            modalGenre.textContent = genre;
+            modalSynopsis.textContent = synopsis;
             modal.classList.add('is-active');
         }
         haveLink.appendChild(haveElement);
@@ -232,6 +270,27 @@ booksArr.forEach(booksObj => {
         currentLink.href = '#'
         currentLink.onclick = () => {
             const modal = document.getElementById('have-read-modal');
+
+            const title = booksObj.title;
+            author = booksObj.author.join(', ');
+            const genre = booksObj.genre;
+
+            const synopsis = booksObj.synopsis;
+            const image = booksObj.cover;
+            const modalAuthor = document.getElementById('book-author')
+            const modalTitle = document.getElementById("book-title-outer");
+            const modalTitleInner = document.getElementById("book-title-inner")
+            const modalGenre = document.getElementById("book-genre");
+            const modalSynopsis = document.getElementById("book-synopsis");
+            const modalImage = document.getElementById("book-image");
+            modalTitle.textContent = title;
+            modalTitleInner.textContent = title;
+            modalAuthor.textContent = author;
+            modalImage.src = image;
+            modalImage.style.maxHeight = '400px';
+            modalImage.style.width = 'auto';
+            modalGenre.textContent = genre;
+            modalSynopsis.textContent = synopsis;
             modal.classList.add('is-active');
         }
         currentLink.appendChild(currentElement);
