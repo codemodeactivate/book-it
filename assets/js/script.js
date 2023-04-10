@@ -35,7 +35,6 @@ form.addEventListener("submit", (event) => {
         })
         .catch((error) => console.error(error)); //if nothing is found do something
 });
-
 //display results to the table from when a user searches for them
 function displayResults(book) {
     const title = book.volumeInfo.title;
@@ -43,7 +42,6 @@ function displayResults(book) {
         ? book.volumeInfo.authors.join(", ")
         : "Unknown";
     const publishedDate = book.volumeInfo.publishedDate;
-    const previewLink = book.volumeInfo.previewLink;
     const tableOfBooks = document.getElementById("results");
     tableOfBooks.classList.remove("is-hidden");
     const row = document.createElement("tr");
@@ -53,20 +51,11 @@ function displayResults(book) {
     authorCell.textContent = author;
     const publishedDateCell = document.createElement("td");
     publishedDateCell.textContent = publishedDate;
-    const previewLinkCell = document.createElement("td");
-    const previewLinkButton = document.createElement("a");
-    previewLinkButton.textContent = "Preview";
-    previewLinkButton.href = previewLink;
-    //previewLinkCell.appendChild(previewLinkButton);
     row.appendChild(titleCell);
     row.appendChild(authorCell);
     row.appendChild(publishedDateCell);
     row.classList.add('book-row', 'js-modal-trigger');
-    //row.dataset.href = "previewLink"; This would attach a link to the google books link to each row from the fetched results. Instead we're opting to make the rows clickable and populate modal
     row.dataset.target = "book-display";
-
-
-    //row.appendChild(previewLinkCell);
     resultsTable.appendChild(row);
     //get then display cover art
     if (book.volumeInfo.industryIdentifiers) {
@@ -103,11 +92,6 @@ function displayResults(book) {
         populateModal(book);
     })
 }
-
-
-
-
-
 //when user clicks on results in table, modal opens and info is passed to it
 const populateModal = (book) => {
     const title = book.volumeInfo.title;
@@ -134,7 +118,8 @@ const populateModal = (book) => {
         booksObj['sort'] = 'wantToRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
-        console.log(booksArr);
+        //populateShelves();
+        window.location.reload();
     });
     const currentButton = document.querySelector('.currentBtn');
     currentButton.addEventListener('click', () => {
@@ -142,6 +127,8 @@ const populateModal = (book) => {
         booksObj['sort'] = 'currentlyReading';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        //populateShelves();
+        window.location.reload();
     });
     const readBtn = document.querySelector('.readBtn');
     readBtn.addEventListener('click', () => {
@@ -149,8 +136,9 @@ const populateModal = (book) => {
         booksObj['sort'] = 'haveRead';
         booksArr.push(booksObj);//add it too arrray
         localStorage.setItem('booksArr', JSON.stringify(booksArr));//store
+        //populateShelves();
+        window.location.reload();
     });
-    console.log(booksLocal);
     const removeListButton = document.querySelector('.removeBtn');
     removeListButton.addEventListener('click', () => {
         const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
@@ -158,13 +146,242 @@ const populateModal = (book) => {
             booksArr.splice(removeWant, 1);
         }
         localStorage.setItem('booksArr', JSON.stringify(booksArr));
+        //populateShelves();
+        window.location.reload();
     })
 };
-
+const populateShelves = () => {
+const booksData = localStorage.getItem('booksArr');
+const booksArr = JSON.parse(booksData) || [];
+const booksWant = document.getElementById("want-to-read");
+const booksCurrent = document.getElementById("currently-reading");
+const booksHave = document.getElementById("have-read");
+const sortWant = "wantToRead";
+const sortHave = 'haveRead';
+const sortCurrently = 'currentlyReading';
+let haveReadBooks = [];
+let wantReadBooks = [];
+let currentlyReadBooks = [];
 const booksLocal = JSON.parse(localStorage.getItem('booksArr'));
-const haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
-console.log('have read: ', haveReadBooks);
-
+    //should fix first time user?
+    if (booksArr.length > 0) {
+        wantReadBooks = booksLocal.filter(book => book.sort === 'wantToRead');
+        haveReadBooks = booksLocal.filter(book => book.sort === 'haveRead');
+        currentlyReadBooks = booksLocal.filter(book => book.sort === 'currentlyReading');
+    }
+// loop through array and create div element for each obj
+booksArr.forEach(booksObj => {
+    // check the sort element then add title to right place
+    if (booksObj.sort === sortWant) {
+        let wantElement = document.createElement('div');
+        wantElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        wantElement.innerText = booksObj.title;
+        wantElement.style.backgroundImage = `url(${booksObj.cover})`;
+        let wantLink = document.createElement('a');
+        wantLink.href = '#';
+        wantLink.onclick = () => {
+            const modal = document.getElementById('book-display');
+            const title = booksObj.title;
+            author = booksObj.author.join(', ');
+            const genre = booksObj.genre;
+            const synopsis = booksObj.synopsis;
+            const image = booksObj.cover;
+            const modalTitle = document.getElementById("search-book-title");
+            const modalAuthor = document.getElementById("search-book-authors");
+            const modalTitleInner = document.getElementById("search-book-title-inner");
+            const modalGenre = document.getElementById("search-book-genre");
+            const modalSynopsis = document.getElementById("search-book-synopsis");
+            const modalImage = document.getElementById("search-book-image");
+            modalTitle.textContent = title;
+            modalTitleInner.textContent = title;
+            modalAuthor.textContent = author;
+            modalImage.src = image;
+            modalImage.style.width = 'auto';
+            modalImage.style.maxHeight = '400px';
+            modalGenre.textContent = genre;
+            modalSynopsis.textContent = synopsis;
+            modal.classList.add('is-active');
+        }
+        wantLink.appendChild(wantElement);
+        booksWant.appendChild(wantLink); // Change this line
+      }
+      if (booksObj.sort === sortHave) {
+        let haveElement = document.createElement('div');
+        haveElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        haveElement.style.backgroundImage = `url(${booksObj.cover})`;
+        let haveLink = document.createElement('a');
+        haveLink.href = '#';
+        haveLink.onclick = () => {
+            const modal = document.getElementById('have-read-modal');
+            const title = booksObj.title;
+            author = booksObj.author.join(', ');
+            const genre = booksObj.genre;
+            const synopsis = booksObj.synopsis;
+            const image = booksObj.cover;
+            const notes = booksObj.notes;
+            const modalAuthor = document.getElementById('book-author')
+            const modalTitle = document.getElementById("book-title-outer");
+            const modalTitleInner = document.getElementById("book-title-inner")
+            const modalGenre = document.getElementById("book-genre");
+            const modalSynopsis = document.getElementById("book-synopsis");
+            const modalImage = document.getElementById("book-image");
+            const modalNotes = document.getElementById("my-notes");
+            modalTitle.textContent = title;
+            modalTitleInner.textContent = title;
+            modalAuthor.textContent = author;
+            modalImage.src = image;
+            modalImage.style.maxHeight = '400px';
+            modalImage.style.width = 'auto';
+            modalGenre.textContent = genre;
+            modalSynopsis.textContent = synopsis;
+            modalNotes.textContent = notes;
+            modal.classList.add('is-active');
+            const saveNotes = document.getElementById("save-notes");
+            saveNotes.addEventListener("click", saveBookNotes);
+            function saveBookNotes(book) {
+                book.preventDefault();
+                const notesTitle = title;
+                const myNotes = document.getElementById("my-notes").value;
+                const elementToAdd = {notes: myNotes};
+                const updatedArray = booksArr.map((booksObj) => {
+                if (booksObj.title === notesTitle) {
+                    return { ...booksObj, ...elementToAdd };
+                }
+                return booksObj;
+            });
+            localStorage.setItem("booksArr", JSON.stringify(updatedArray));
+            window.location.reload();
+            }
+        }
+        haveLink.appendChild(haveElement);
+        booksHave.appendChild(haveLink);
+      }
+    if (booksObj.sort === sortCurrently) {
+        let currentElement = document.createElement('div');
+        currentElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        currentElement.innerText = booksObj.title;
+        currentElement.style.backgroundImage = `url(${booksObj.cover})`;
+        let currentLink = document.createElement('a');
+        currentLink.href = '#'
+        currentLink.onclick = () => {
+            const modal = document.getElementById('have-read-modal');
+            const title = booksObj.title;
+            author = booksObj.author.join(', ');
+            const genre = booksObj.genre;
+            const synopsis = booksObj.synopsis;
+            const image = booksObj.cover;
+            const notes = booksObj.notes;
+            const modalAuthor = document.getElementById('book-author')
+            const modalTitle = document.getElementById("book-title-outer");
+            const modalTitleInner = document.getElementById("book-title-inner")
+            const modalGenre = document.getElementById("book-genre");
+            const modalSynopsis = document.getElementById("book-synopsis");
+            const modalImage = document.getElementById("book-image");
+            const modalNotes = document.getElementById("my-notes");
+            modalTitle.textContent = title;
+            modalTitleInner.textContent = title;
+            modalAuthor.textContent = author;
+            modalImage.src = image;
+            modalImage.style.maxHeight = '400px';
+            modalImage.style.width = 'auto';
+            modalGenre.textContent = genre;
+            modalSynopsis.textContent = synopsis;
+            modalNotes.textContent = notes;
+            modal.classList.add('is-active');
+            const saveNotes = document.getElementById("save-notes");
+            saveNotes.addEventListener("click", saveBookNotes);
+            function saveBookNotes(book) {
+                book.preventDefault();
+                const notesTitle = title;
+                const myNotes = document.getElementById("my-notes").value;
+                const elementToAdd = {notes: myNotes};
+                const updatedArray = booksArr.map((booksObj) => {
+                if (booksObj.title === notesTitle) {
+                    return { ...booksObj, ...elementToAdd };
+                }
+                return booksObj;
+            });
+            localStorage.setItem("booksArr", JSON.stringify(updatedArray));
+            window.location.reload();
+            }
+        }
+        currentLink.appendChild(currentElement);
+        booksCurrent.appendChild(currentLink);
+    }
+  });
+  //initialize carousel
+  bulmaCarousel.attach('#currently-reading', {
+    autoplay: true,
+    autoplaySpeed: 3000,
+    animation: 'slide',
+    infinite: true,
+    navigation: true,
+    pagination: true,
+    items: 3,
+    itemsMobile: 1,
+    itemsTablet: 2,
+    itemsDesktop: 3,
+    itemsDesktopSmall: 2,
+    itemsWidescreen: 3,
+    mobileBreakpoint: 480,
+    tabletBreakpoint: 768,
+    desktopBreakpoint: 1024,
+    widescreenBreakpoint: 1216,
+    fullhdBreakpoint: 1408,
+    center: true,
+    touch: true,
+    swipeThreshold: 50,
+    speed: 500
+  });
+  bulmaCarousel.attach('#want-to-read', {
+    autoplay: true,
+    autoplaySpeed: 3000,
+    animation: 'slide',
+    infinite: true,
+    navigation: true,
+    pagination: true,
+    items: 3,
+    itemsMobile: 1,
+    itemsTablet: 2,
+    itemsDesktop: 3,
+    itemsDesktopSmall: 2,
+    itemsWidescreen: 3,
+    mobileBreakpoint: 480,
+    tabletBreakpoint: 768,
+    desktopBreakpoint: 1024,
+    widescreenBreakpoint: 1216,
+    fullhdBreakpoint: 1408,
+    center: true,
+    touch: true,
+    swipeThreshold: 50,
+    speed: 500
+  });
+  
+  bulmaCarousel.attach('#have-read', {
+    autoplay: true,
+    autoplaySpeed: 3000,
+    animation: 'slide',
+    infinite: true,
+    navigation: true,
+    pagination: true,
+    items: 3,
+    itemsMobile: 1,
+    itemsTablet: 2,
+    itemsDesktop: 3,
+    itemsDesktopSmall: 2,
+    itemsWidescreen: 3,
+    mobileBreakpoint: 480,
+    tabletBreakpoint: 768,
+    desktopBreakpoint: 1024,
+    widescreenBreakpoint: 1216,
+    fullhdBreakpoint: 1408,
+    center: true,
+    touch: true,
+    swipeThreshold: 50,
+    speed: 500
+  });
+}
+populateShelves();
 //hover effect for table
 const tableRows = document.getElementsByTagName("tr");
 resultsTable.addEventListener("mouseover", (event) => {
@@ -177,27 +394,10 @@ resultsTable.addEventListener("mouseover", (event) => {
         });
     }
 });
-
-
-//savenotes
-const saveNotes = document.getElementById("save-notes");
-saveNotes.addEventListener("click", saveBookNotes);
-
-function saveBookNotes(book) {
-    book.preventDefault();
-    const myNotes = document.getElementById("my-notes").value;
-    const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image, notes: myNotes};
-    booksObj['sort'] = 'haveRead';
-    booksArr.push(booksObj);
-    localStorage.setItem('booksArr', JSON.stringify(booksArr));
-    console.log(booksArr);
-};
-
 //Rating Stuff
-
 //Own Rating Storage
 const stars = document.querySelectorAll('#my-rating .fa-star');
-
+let currentRating = 0;
 function setRating(rating) {
     stars.forEach(function(star, index) {
       if (index < rating) {
@@ -206,7 +406,7 @@ function setRating(rating) {
         star.classList.remove('fa-solid');
       }
     });
-    localStorage.setItem('rating', rating);
+    currentRating = rating;
   }
 
   stars.forEach(function(star, index) {
@@ -225,13 +425,8 @@ function setRating(rating) {
     star.addEventListener("click", function() {
       const rating = index + 1;
       setRating(rating);
-      console.log(rating);
     });
   });
-
-
-
-
 //modal stuff
 document.addEventListener("DOMContentLoaded", () => {
     // Functions to open and close a modal
@@ -246,6 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeAllModals() {
         (document.querySelectorAll(".modal") || []).forEach(($modal) => {
             closeModal($modal);
+            populateShelves();
         });
     }
 
@@ -286,22 +482,40 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const logArray = JSON.parse(localStorage.getItem('booksArr'));
 console.log(booksArr);
-
 bulmaCarousel.attach('#currently-reading', {
     slidesToScroll: 1,
-    slidesToShow: 3,
+    slidesToShow: 4,
     infinite: true,
     loop: true,
   });
   bulmaCarousel.attach('#want-to-read', {
     slidesToScroll: 1,
-    slidesToShow: 3,
+    slidesToShow: 4,
     infinite: true,
     loop: true,
   });
   bulmaCarousel.attach('#have-read', {
     slidesToScroll: 1,
-    slidesToShow: 3,
+    slidesToShow: 4,
     infinite: true,
     loop: true,
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
   });
