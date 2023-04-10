@@ -272,16 +272,24 @@ booksArr.forEach(booksObj => {
                 book.preventDefault();
                 const notesTitle = title;
                 const myNotes = document.getElementById("my-notes").value;
-                const elementToAdd = {notes: myNotes};
-                const updatedArray = booksArr.map((booksObj) => {
+                const notesToAdd = {notes: myNotes};
+                const ratingToAdd = {rating: currentRating};
+                const tempArray = booksArr.map((booksObj) => {
                 if (booksObj.title === notesTitle) {
-                    return { ...booksObj, ...elementToAdd };
+                    return { ...booksObj, ...notesToAdd };
                 }
                 return booksObj;
             });
-            localStorage.setItem("booksArr", JSON.stringify(updatedArray));
-            window.location.reload();
-            }
+            const updatedArray = tempArray.map((booksObj) => {
+                if (booksObj.title === notesTitle) {
+                    return { ...booksObj, ...ratingToAdd };
+                }
+                return booksObj;
+                
+            });            
+                localStorage.setItem("booksArr", JSON.stringify(updatedArray));
+                window.location.reload();
+            };
             const removeListButton = document.getElementById('removeBtn2');
             removeListButton.addEventListener('click', () => {
                 const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
@@ -298,7 +306,7 @@ booksArr.forEach(booksObj => {
       }
     if (booksObj.sort === sortCurrently) {
         let currentElement = document.createElement('div');
-        currentElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7');
+        currentElement.classList.add('column', 'is-one-quarter', 'is-on-shelf', 'is-size-7', 'is-justify-content-center');
         currentElement.style.backgroundImage = `url(${booksObj.cover})`;
         let currentLink = document.createElement('a');
         currentLink.href = '#'
@@ -333,19 +341,27 @@ booksArr.forEach(booksObj => {
                 book.preventDefault();
                 const notesTitle = title;
                 const myNotes = document.getElementById("my-notes").value;
-                const elementToAdd = {notes: myNotes};
-                const updatedArray = booksArr.map((booksObj) => {
+                const notesToAdd = {notes: myNotes};
+                const ratingToAdd = {rating: currentRating};
+                const tempArray = booksArr.map((booksObj) => {
                 if (booksObj.title === notesTitle) {
-                    return { ...booksObj, ...elementToAdd };
+                    return { ...booksObj, ...notesToAdd };
                 }
                 return booksObj;
             });
-            localStorage.setItem("booksArr", JSON.stringify(updatedArray));
-            window.location.reload();
-            }
+            const updatedArray = tempArray.map((booksObj) => {
+                if (booksObj.title === notesTitle) {
+                    return { ...booksObj, ...ratingToAdd };
+                }
+                return booksObj;
+                
+            });            
+                localStorage.setItem("booksArr", JSON.stringify(updatedArray));
+                window.location.reload();
+            };
             const readBtn = document.getElementById('haveReadBtn');
             readBtn.addEventListener('click', () => {
-                const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image};//obj that goes in array
+                const booksObj = {title: title, author: author, genre: genre, synopsis: synopsis, cover:image, notes:notes, rating:currentRating};//obj that goes in array
                 booksObj['sort'] = 'haveRead';
                 booksArr.push(booksObj);//add it too arrray
                 const removeWant = booksArr.findIndex(booksObj => booksObj.title === title);// search for the object
