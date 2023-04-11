@@ -13,7 +13,7 @@ form.addEventListener("submit", (event) => {
         `https://www.googleapis.com/books/v1/volumes?q=${searchBookName}&key=${apiKey}&startIndex=0&maxResults=${resultsParam}`
     )
         .then((response) => {
-            console.log(response);
+
             return response.json();
         })
         .then((data) => {
@@ -210,6 +210,7 @@ const populateShelves = () => {
                 "is-size-7"
             );
             wantElement.style.backgroundImage = `url(${booksObj.cover})`;
+            //wantElement.textContent = booksObj.title;
             let wantLink = document.createElement("a");
             wantLink.href = "#";
             wantLink.onclick = () => {
@@ -345,7 +346,7 @@ const populateShelves = () => {
                     const myRating = currentRating;
                     const tempArray = booksArr.map((booksObj) => {
                         if (booksObj.title === notesTitle) {
-                            console.log(booksObj);
+
                             return { ...booksObj, ...notesToAdd };
                         }
                         return booksObj;
@@ -659,7 +660,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 const logArray = JSON.parse(localStorage.getItem("booksArr"));
-console.log(booksArr);
+
 
 document.addEventListener("DOMContentLoaded", () => {
     // Get all "navbar-burger" elements
