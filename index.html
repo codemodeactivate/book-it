@@ -174,7 +174,7 @@
               <div class="border-inner">
 
                 <div class="box m-1">
-                  <div class="columns is-multiline" id="have-read"> 
+                  <div class="columns is-multiline" id="have-read">
                     <!--START OF BOOK-->
 
                     <!--END OF BOOK-->
@@ -260,7 +260,7 @@
         <div class="column is-full is-flex is-justify-content-center">
           <div id="my-rating">
             <span class="icon has-text-warning is-largeis-three-quarters-mobile is-two-thirds-tablet is-half-desktop">
-              
+
               <i class="fa-regular fa-4x fa-star" data-rating="1"></i>
               <i class="fa-regular fa-4x fa-star" data-rating="2"></i>
               <i class="fa-regular fa-4x fa-star" data-rating="3"></i>
@@ -277,13 +277,13 @@
         <div class="column is-full is-flex is-justify-content-center">
           <div id="average-rating">
             <span class="icon has-text-warning is-large">
-          
+
               <i class="fa-solid fa-4x fa-star is-mobile"></i>
               <i class="fa-solid fa-4x fa-star is-mobile"></i>
               <i class="fa-solid fa-4x fa-star is-mobile"></i>
               <i class="fa-solid fa-4x fa-star is-mobile"></i>
-              <i class="fa-solid fa-4x fa-star-half-stroke is-mobile"></i> 
-          
+              <i class="fa-solid fa-4x fa-star-half-stroke is-mobile"></i>
+
             </span>
           </div>
         </div>
@@ -329,8 +329,8 @@
       </section>
       <footer class="modal-card-foot is-justify-content-space-evenly is-mobile">
 
-      </footer> 
-      
+      </footer>
+
     </div>
 
     <!--<button class="modal-close is-large" aria-label="close"></button>--><!-- Adds X close button at top of modal background overlay-->
@@ -344,11 +344,17 @@
     <div class="modal-background">
       <!-- Adding this ID incase we need to get more precise later with the multiple modals we're trying to implement -->
     </div>
-    <div class="modal-card is-three-quarters-mobile is-two-thirds-tablet is-half-desktop">
+    <div class="modal-card">
       <header class="modal-card-head is-mobile">
-        <p class="modal-card-title has-text-centered" id="search-book-title">BOOK TITLE</p>
+        <p class="modal-card-title has-text-centered is-size-6-mobile is-size-2-desktop has-wrap" id="search-book-title">BOOK TITLE</p>
         <button class="delete" aria-label="close"></button>
-      </header>
+    </header>
+
+
+
+
+
+
       <section class="modal-card-body columns is-multiline mb-0 media is-mobile">
         <div class="column is-two-fifths is-flex is-flex-direction-column is-justify-content-center v-full">
           <div class="column is-flex is-flex-direction-column is-justify-content-center">
@@ -377,15 +383,16 @@
         </div>
         <div class="column is-full is-flex is-justify-content-center">
           <div id="average-rating">
-            <span class="icon has-text-warning is-large">
-              <i class="fa-solid fa-4x fa-star"></i>
-              <i class="fa-solid fa-4x fa-star"></i>
-              <i class="fa-solid fa-4x fa-star"></i>
-              <i class="fa-solid fa-4x fa-star"></i>
-              <i class="fa-solid fa-4x fa-star-half-stroke"></i>
+            <span class="icon has-text-warning is-size-3-mobile is-size-2-tablet is-size-1-desktop">
+              <i class="fa-solid fa fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa fa-star-half-stroke is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
             </span>
           </div>
         </div>
+
         <div class="column is-full is-mobile">
           <div class="is-clipped">
             <p id="search-book-synopsis" class="is-italic">
@@ -409,17 +416,31 @@
           </div>
         </div>
       </section>
-      <footer class="columns modal-card-foot is-flex is-justify-content-space-evenly is-three-quarters-mobile is-two-thirds-tablet is-half-desktop">
-      <div class="column-is-mobile-stacked"><button class="addBtn button is-success">Add to List</button></div>
-       <div class="column-is-mobile-stacked"><button class="currentBtn button is-warning">Currently Reading</button></div>
-       <div class="column-is-mobile-stacked"><button class="readBtn button is-info">I've Read it</button></div>
-       <div class="column-is-mobile-stacked"><button class="removeBtn button is-danger">Remove From List</button></div> 
+      <footer class="modal-card-foot">
+        <div class="columns is-multiline is-mobile is-centered">
+          <div class="column is-narrow">
+            <button class="addBtn button is-success">Add to List</button>
+          </div>
+          <div class="column is-narrow">
+            <button class="currentBtn button is-warning">Currently Reading</button>
+          </div>
+          <div class="column is-narrow">
+            <button class="readBtn button is-info">I've Read it</button>
+          </div>
+          <div class="column is-narrow">
+            <button class="removeBtn button is-danger">Remove From List</button>
+          </div>
+        </div>
       </footer>
+
+
+
+
     </div>
 
             <!--<button class="modal-close is-large" aria-label="close"></button>--><!-- Adds X close button at top of modal background overlay-->
         </div>
-        <!-- END OF Jeff Modal / "Page 2"--> 
+        <!-- END OF Jeff Modal / "Page 2"-->
 
         <script src="./assets/js/script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
