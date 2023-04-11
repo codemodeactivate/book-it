@@ -210,6 +210,7 @@ const populateShelves = () => {
                 "is-size-7"
             );
             wantElement.style.backgroundImage = `url(${booksObj.cover})`;
+            //wantElement.textContent = booksObj.title;
             let wantLink = document.createElement("a");
             wantLink.href = "#";
             wantLink.onclick = () => {
