@@ -4,7 +4,10 @@ Case Western Coding Bootcamp Group Project # 1
 
 ## Team Members
 [Claudia Gillota](https://github.com/cgillota)
+
 [Christopher Schmidt](https://github.com/cschmidt216)
+
+[Jeff Zenko](https://github.com/codemodeactivate)
 
 ## Demo
 
@@ -28,7 +31,7 @@ This is our first bootcamp project in which we're required to use at least two A
 - [ ] Count how many books are read over x time
 - [X] Add functionality to rate & store rating of book that's read
 - [ ] Users should be able to rate the books they've read and have that stored locally
-- [ ] Mobile and other screen size responsiveness
+- [X] Mobile and other screen size responsiveness
 - [ ] Error handling
 
 
