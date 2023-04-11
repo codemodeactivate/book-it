@@ -133,6 +133,12 @@ const populateModal = (book) => {
             cover: image,
         }; //obj that goes in array
         booksObj["sort"] = "wantToRead";
+        const checkDupe = booksArr.findIndex(
+            (booksObj) => booksObj.title === title
+        ); // search for the object
+        if (checkDupe !== -1) {
+            preventDefault(addToListButton.addEventListener);
+        }
         booksArr.push(booksObj); //add it too arrray
         localStorage.setItem("booksArr", JSON.stringify(booksArr)); //store
         window.location.reload();
@@ -147,6 +153,12 @@ const populateModal = (book) => {
             cover: image,
         }; //obj that goes in array
         booksObj["sort"] = "currentlyReading";
+        const checkDupe = booksArr.findIndex(
+            (booksObj) => booksObj.title === title
+        ); // search for the object
+        if (checkDupe !== -1) {
+            preventDefault(currentButton.addEventListener);
+        }
         booksArr.push(booksObj); //add it too arrray
         localStorage.setItem("booksArr", JSON.stringify(booksArr)); //store
         window.location.reload();
@@ -161,6 +173,12 @@ const populateModal = (book) => {
             cover: image,
         }; //obj that goes in array
         booksObj["sort"] = "haveRead";
+        const checkDupe = booksArr.findIndex(
+            (booksObj) => booksObj.title === title
+        ); // search for the object
+        if (checkDupe !== -1) {
+            preventDefault(readBtn.addEventListener);
+        }
         booksArr.push(booksObj); //add it too arrray
         localStorage.setItem("booksArr", JSON.stringify(booksArr)); //store
         window.location.reload();
