@@ -333,3 +333,10 @@
     background-repeat: no-repeat;
     margin-bottom: 15px;
   }
+
+  .modal-card-title {
+    word-break: break-word;
+  }
+  .has-wrap {
+    white-space: normal !important;
+}

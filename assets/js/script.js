@@ -198,16 +198,18 @@ const populateShelves = () => {
             (book) => book.sort === "currentlyReading"
         );
     }
+    
     // loop through array and create div element for each obj
     booksArr.forEach((booksObj) => {
         // check the sort element then add title to right place
         if (booksObj.sort === sortWant) {
+
             let wantElement = document.createElement("div");
             wantElement.classList.add(
                 "column",
                 "is-one-quarter",
                 "is-on-shelf",
-                "is-size-7"
+                "is-size-7",
             );
             wantElement.style.backgroundImage = `url(${booksObj.cover})`;
             //wantElement.textContent = booksObj.title;
@@ -295,7 +297,10 @@ const populateShelves = () => {
             };
             wantLink.appendChild(wantElement);
             booksWant.appendChild(wantLink); // Change this line
+
         }
+
+
         if (booksObj.sort === sortHave) {
             let haveElement = document.createElement("div");
             haveElement.classList.add(
