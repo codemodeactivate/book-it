@@ -224,12 +224,12 @@
 
   <!--BEGIN TRACE PART-->
   <div id="have-read-modal" class="modal">
-    <div class="modal-background is-mobile">
+    <div class="modal-background">
       <!-- Adding this ID incase we need to get more precise later with the multiple modals we're trying to implement -->
     </div>
-    <div class="modal-card is-three-quarters-mobile is-two-thirds-tablet is-half-desktop">
+    <div class="modal-card">
       <header class="modal-card-head is-mobile">
-        <p id="book-title-outer" class="modal-card-title has-text-centered">BOOK TITLE</p>
+        <p id="book-title-outer" class="modal-card-title has-text-centered is-size-6-mobile is-size-2-desktop has-wrap">BOOK TITLE</p>
         <button class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body columns is-multiline mb-0 media is-mobile">
@@ -254,18 +254,18 @@
         </div>
         <div class="column is-full is-flex is-justify-content-center">
           <div>
-            <p class="is-size-3 is-4-mobile">My Rating</p>
+            <p class="is-size-3">My Rating</p>
           </div>
         </div>
         <div class="column is-full is-flex is-justify-content-center">
           <div id="my-rating">
-            <span class="icon has-text-warning is-largeis-three-quarters-mobile is-two-thirds-tablet is-half-desktop">
+            <span class="icon has-text-warning is-size-3-mobile is-size-2-tablet is-1-desktop">
 
-              <i class="fa-regular fa-4x fa-star" data-rating="1"></i>
-              <i class="fa-regular fa-4x fa-star" data-rating="2"></i>
-              <i class="fa-regular fa-4x fa-star" data-rating="3"></i>
-              <i class="fa-regular fa-4x fa-star" data-rating="4"></i>
-              <i class="fa-regular fa-4x fa-star" data-rating="5"></i>
+              <i class="fa-regular fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop" data-rating="1"></i>
+              <i class="fa-regular fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop" data-rating="2"></i>
+              <i class="fa-regular fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop" data-rating="3"></i>
+              <i class="fa-regular fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop" data-rating="4"></i>
+              <i class="fa-regular fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop" data-rating="5"></i>
             </span>
           </div>
         </div>
@@ -276,13 +276,13 @@
         </div>
         <div class="column is-full is-flex is-justify-content-center">
           <div id="average-rating">
-            <span class="icon has-text-warning is-large">
+            <span class="icon has-text-warning is-size-3-mobile is-size-2-tablet is-size-1-desktop">
 
-              <i class="fa-solid fa-4x fa-star is-mobile"></i>
-              <i class="fa-solid fa-4x fa-star is-mobile"></i>
-              <i class="fa-solid fa-4x fa-star is-mobile"></i>
-              <i class="fa-solid fa-4x fa-star is-mobile"></i>
-              <i class="fa-solid fa-4x fa-star-half-stroke is-mobile"></i>
+              <i class="fa-solid fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa-4x fa-star is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
+              <i class="fa-solid fa-4x fa-star-half-stroke is-size-3-mobile is-size-2-tablet is-size-1-desktop"></i>
 
             </span>
           </div>
@@ -297,10 +297,16 @@
           <div class="is-clipped is-align-items-center">
             <form><textarea id="my-notes" class="textarea is-primary" placeholder="My notes.."></textarea>
           </div>
-          <div class="column is-full is-flex is-justify-content-space-evenly is-three-quarters-mobile is-two-thirds-tablet is-half-desktop">
-            <button id="save-notes" class="button is-primary is-success">Save</button></form>
+          <div class="columns is-multiline is-mobile is-centered">
+            <div class="column is-narrow">
+            <button id="save-notes" class="button is-primary is-success">Save</button>
+            </div>
+            <div class="column is-narrow">
             <button id="haveReadBtn" class="button is-info">I've Read It</button>
+            </div>
+            <div class="column is-narrow">
             <button id="removeBtn2" class="button is-danger">Remove From List</button>
+            </div>
           </div>
         </div>
 
