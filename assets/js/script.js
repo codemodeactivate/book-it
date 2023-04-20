@@ -198,19 +198,24 @@ const populateShelves = () => {
             (book) => book.sort === "currentlyReading"
         );
     }
-    
+
     // loop through array and create div element for each obj
-    booksArr.forEach((booksObj) => {
+    booksArr.forEach((booksObj, index) => {
         // check the sort element then add title to right place
         if (booksObj.sort === sortWant) {
 
             let wantElement = document.createElement("div");
+
             wantElement.classList.add(
                 "column",
                 "is-one-quarter",
                 "is-on-shelf",
                 "is-size-7",
             );
+            const wantParent = booksWant;
+            if (index === 0) {
+                wantParent.setAttribute("data-slider-index", "1");
+            }
             wantElement.style.backgroundImage = `url(${booksObj.cover})`;
             //wantElement.textContent = booksObj.title;
             let wantLink = document.createElement("a");
@@ -488,7 +493,7 @@ const populateShelves = () => {
     });
     //initialize carousel
     bulmaCarousel.attach("#currently-reading", {
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
         animation: "slide",
         infinite: true,
@@ -509,9 +514,10 @@ const populateShelves = () => {
         touch: true,
         swipeThreshold: 50,
         speed: 500,
+        initialSlide: 4,
     });
     bulmaCarousel.attach("#want-to-read", {
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
         animation: "slide",
         infinite: true,
@@ -531,11 +537,12 @@ const populateShelves = () => {
         center: true,
         touch: true,
         swipeThreshold: 50,
+        initialSlide: 4,
         speed: 500,
     });
 
     bulmaCarousel.attach("#have-read", {
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
         animation: "slide",
         infinite: true,
@@ -544,6 +551,7 @@ const populateShelves = () => {
         items: 3,
         itemsMobile: 1,
         itemsTablet: 2,
+        initialSlide: 4,
         itemsDesktop: 3,
         itemsDesktopSmall: 2,
         itemsWidescreen: 3,
@@ -687,3 +695,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+const carousel = new BulmaCarousel("#myCarousel", {
+    slidesToScroll: 1,
+    slidesToShow: 3
+  });
+
+  // Trigger a reflow after the carousel has been initialized
+  setTimeout(() => {
+    carousel.onResize();
+  }, 0);
